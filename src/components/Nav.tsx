@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { profile } from "@/lib/content";
-import { CommandPalette } from "./CommandPalette";
+import { CommandPalette, useGlobalShortcuts } from "./CommandPalette";
 import { CurrentTime, ThemeToggle } from "./ThemeControls";
+import { NavPlayButton } from "./AudioPlayer";
 
 const LINKS = [
   { id: "experience", label: "Experience" },
@@ -16,6 +17,8 @@ const LINKS = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+
+  useGlobalShortcuts();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -72,6 +75,7 @@ export function Nav() {
 
           <div className="flex shrink-0 items-center gap-2">
             <CurrentTime className="hidden rounded-lg border border-border-subtle bg-surface-container-lowest px-2.5 py-2 text-xs sm:block" />
+            <NavPlayButton />
             <ThemeToggle />
             <button
               onClick={() => setPaletteOpen(true)}

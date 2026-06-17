@@ -4,17 +4,44 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { socials } from "@/lib/content";
 
-export type Command = { label: string; hint: string; run: () => void };
+export type Command = { label: string; hint: string; shortcut?: string; run: () => void };
 
 const SECTIONS = [
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "open-source", label: "Open Source" },
-  { id: "skills", label: "Skills" },
-  { id: "education", label: "Education" },
-  { id: "writing", label: "Writing" },
+  { id: "about", label: "About", key: "1" },
+  { id: "experience", label: "Experience", key: "2" },
+  { id: "projects", label: "Projects", key: "3" },
+  { id: "open-source", label: "Open Source", key: "4" },
+  { id: "skills", label: "Skills", key: "5" },
+  { id: "education", label: "Education", key: "6" },
+  { id: "writing", label: "Writing", key: "7" },
 ];
+
+/** Global keyboard shortcuts — works even when the palette is closed */
+export function useGlobalShortcuts() {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      // Ignore when typing in inputs
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+      const section = SECTIONS.find((s) => s.key === e.key);
+      if (section) {
+        e.preventDefault();
+        document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // T = scroll to top
+      if (e.key === "t") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+}
 
 export function CommandPalette({
   open,
@@ -43,6 +70,7 @@ function PaletteDialog({ onClose }: { onClose: () => void }) {
     const nav = SECTIONS.map((s) => ({
       label: `Go to ${s.label}`,
       hint: "Section",
+      shortcut: s.key,
       run: () => go(s.id),
     }));
     const links = socials.map((s) => ({
@@ -53,15 +81,45 @@ function PaletteDialog({ onClose }: { onClose: () => void }) {
         onClose();
       },
     }));
-    const email: Command = {
-      label: "Copy email",
-      hint: "swansiddhant9@gmail.com",
-      run: () => {
-        navigator.clipboard?.writeText("swansiddhant9@gmail.com");
-        onClose();
+    const actions: Command[] = [
+      {
+        label: "Scroll to top",
+        hint: "Action",
+        shortcut: "T",
+        run: () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          onClose();
+        },
       },
-    };
-    return [...nav, ...links, email];
+      {
+        label: "Toggle music",
+        hint: "Action",
+        shortcut: "M",
+        run: () => {
+          window.dispatchEvent(new Event("toggle-music"));
+          onClose();
+        },
+      },
+      {
+        label: "Toggle theme",
+        hint: "Action",
+        run: () => {
+          // Simulate a click on the theme toggle button
+          const btn = document.querySelector<HTMLButtonElement>('[aria-label*="Switch to"]');
+          btn?.click();
+          onClose();
+        },
+      },
+      {
+        label: "Copy email",
+        hint: "swansiddhant9@gmail.com",
+        run: () => {
+          navigator.clipboard?.writeText("swansiddhant9@gmail.com");
+          onClose();
+        },
+      },
+    ];
+    return [...nav, ...actions, ...links];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -110,6 +168,7 @@ function PaletteDialog({ onClose }: { onClose: () => void }) {
         exit={{ opacity: 0, y: -8, scale: 0.98 }}
         transition={{ duration: 0.18, ease: [0.2, 0.8, 0.2, 1] }}
       >
+        {/* Search input */}
         <input
           autoFocus
           value={query}
@@ -120,6 +179,33 @@ function PaletteDialog({ onClose }: { onClose: () => void }) {
           placeholder="Jump to a section or link…"
           className="w-full border-b border-border-subtle bg-transparent px-4 py-3.5 font-mono text-sm text-on-surface placeholder:text-text-muted outline-none"
         />
+
+        {/* Shortcut legend */}
+        <div className="flex flex-wrap gap-2 border-b border-border-subtle px-4 py-2.5">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted">Shortcuts:</span>
+          {SECTIONS.map((s) => (
+            <span key={s.key} className="flex items-center gap-1">
+              <kbd className="rounded border border-border-subtle bg-surface-container px-1.5 py-0.5 font-mono text-[10px] text-on-surface-variant">
+                {s.key}
+              </kbd>
+              <span className="font-mono text-[10px] text-text-muted">{s.label}</span>
+            </span>
+          ))}
+          <span className="flex items-center gap-1">
+            <kbd className="rounded border border-border-subtle bg-surface-container px-1.5 py-0.5 font-mono text-[10px] text-on-surface-variant">
+              M
+            </kbd>
+            <span className="font-mono text-[10px] text-text-muted">Music</span>
+          </span>
+          <span className="flex items-center gap-1">
+            <kbd className="rounded border border-border-subtle bg-surface-container px-1.5 py-0.5 font-mono text-[10px] text-on-surface-variant">
+              T
+            </kbd>
+            <span className="font-mono text-[10px] text-text-muted">Top</span>
+          </span>
+        </div>
+
+        {/* Results */}
         <ul className="max-h-72 overflow-y-auto p-2">
           {filtered.length === 0 && (
             <li className="px-3 py-6 text-center font-mono text-xs text-text-muted">No matches</li>
@@ -134,8 +220,15 @@ function PaletteDialog({ onClose }: { onClose: () => void }) {
                 }`}
               >
                 <span className="text-sm text-on-surface">{c.label}</span>
-                <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
-                  {c.hint}
+                <span className="flex items-center gap-2">
+                  {c.shortcut && (
+                    <kbd className="rounded border border-border-subtle bg-surface-container px-1.5 py-0.5 font-mono text-[10px] text-on-surface-variant">
+                      {c.shortcut}
+                    </kbd>
+                  )}
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
+                    {c.hint}
+                  </span>
                 </span>
               </button>
             </li>

@@ -61,18 +61,34 @@ export function ThemeToggle() {
     const rect = event.currentTarget.getBoundingClientRect();
     const originX = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
     const originY = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
-    const cols = 22;
-    const rows = 14;
+
+    // Match the background grid cell size (284×112px) so tiles overlap perfectly
+    const GRID_W = 284;
+    const GRID_H = 112;
+
+    // Background grid is centered (background-position: center top),
+    // so compute the horizontal offset to align the wipe grid to it.
+    const offsetX = (((window.innerWidth - GRID_W) / 2) % GRID_W + GRID_W) % GRID_W;
+    const cols = Math.ceil((window.innerWidth + offsetX) / GRID_W) + 1;
+    const rows = Math.ceil(window.innerHeight / GRID_H) + 1;
+
     const wipe = document.createElement("span");
     wipe.className = "theme-pixel-wipe";
     wipe.style.setProperty("--pixel-bg", next === "light" ? "#ffffff" : "#131316");
+    wipe.style.setProperty("--grid-cols", `${cols}`);
+    wipe.style.setProperty("--grid-rows", `${rows}`);
+    wipe.style.setProperty("--cell-w", `${GRID_W}px`);
+    wipe.style.setProperty("--cell-h", `${GRID_H}px`);
+    wipe.style.setProperty("--offset-x", `-${GRID_W - offsetX}px`);
 
     for (let row = 0; row < rows; row += 1) {
       for (let col = 0; col < cols; col += 1) {
         const tile = document.createElement("span");
-        const tileX = ((col + 0.5) / cols) * window.innerWidth;
-        const tileY = ((row + 0.5) / rows) * window.innerHeight;
-        const distance = Math.hypot(tileX - originX, tileY - originY);
+        const tileX = col * GRID_W + offsetX - (GRID_W - offsetX);
+        const tileY = row * GRID_H;
+        const tileCenterX = tileX + GRID_W / 2;
+        const tileCenterY = tileY + GRID_H / 2;
+        const distance = Math.hypot(tileCenterX - originX, tileCenterY - originY);
         const normalized = distance / Math.hypot(window.innerWidth, window.innerHeight);
         tile.style.setProperty("--delay", `${Math.round(normalized * 280)}ms`);
         wipe.appendChild(tile);

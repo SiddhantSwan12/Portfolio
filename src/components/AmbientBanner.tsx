@@ -2,13 +2,15 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 /**
- * Original, procedural hero banner — no external/copyrighted artwork.
- * A monochrome "technical field": a faint drifting grid, a slow parallax
- * glow, and a scanning sheen. Evokes the live site's video banner without a
- * heavy video file. Swap in a real <Image> later by dropping it behind this.
+ * Dual-image hero banner with a smooth day ↔ night crossfade.
+ *
+ * Both images are stacked; the night layer sits on top and its opacity is
+ * driven by the current theme. The transition is a slow, cinematic
+ * crossfade — the samurai scene morphs from day to night (and back)
+ * without any visible cut.
  */
 export function AmbientBanner({
   className = "",
@@ -18,12 +20,37 @@ export function AmbientBanner({
   children?: ReactNode;
 }) {
   const reduce = useReducedMotion();
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const check = () => {
+      setIsDark(document.documentElement.dataset.theme !== "light");
+    };
+    check();
+
+    window.addEventListener("theme-change", check);
+    window.addEventListener("storage", check);
+
+    // Also observe attribute changes on <html> for the initial script
+    const observer = new MutationObserver(check);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => {
+      window.removeEventListener("theme-change", check);
+      window.removeEventListener("storage", check);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div
       className={`relative overflow-hidden rounded-xl border border-border-subtle bg-surface-container-lowest ${className}`}
       aria-hidden
     >
+      {/* Day layer (always rendered, always visible as base) */}
       <Image
         src="/banner.jpg"
         alt=""
@@ -32,13 +59,51 @@ export function AmbientBanner({
         sizes="(min-width: 1200px) 1072px, calc(100vw - 32px)"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/65 via-background/14 to-background/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent" />
+
+      {/* Night layer — opacity crossfade driven by theme */}
+      <Image
+        src="/banner_night.png"
+        alt=""
+        fill
+        priority
+        sizes="(min-width: 1200px) 1072px, calc(100vw - 32px)"
+        className="object-cover object-center"
+        style={{
+          opacity: isDark ? 1 : 0,
+          transition: "opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)",
+        }}
+      />
+
+      {/* Gradient overlays for text readability */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: isDark
+            ? "linear-gradient(to right, rgba(19,19,22,0.65), rgba(19,19,22,0.14), rgba(19,19,22,0.10))"
+            : "linear-gradient(to right, rgba(255,255,255,0.55), rgba(255,255,255,0.10), rgba(255,255,255,0.05))",
+          transition: "background 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)",
+        }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background: isDark
+            ? "linear-gradient(to top, rgba(19,19,22,0.55), transparent, transparent)"
+            : "linear-gradient(to top, rgba(255,255,255,0.45), transparent, transparent)",
+          transition: "background 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)",
+        }}
+      />
 
       {/* Slow scanning sheen */}
       {!reduce && (
         <motion.div
-          className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/[0.16] to-transparent"
+          className="absolute inset-y-0 w-1/3"
+          style={{
+            background: isDark
+              ? "linear-gradient(to right, transparent, rgba(255,255,255,0.16), transparent)"
+              : "linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent)",
+            transition: "background 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)",
+          }}
           animate={{ x: ["-120%", "320%"] }}
           transition={{ duration: 10, ease: "easeInOut", repeat: Infinity, repeatDelay: 4 }}
         />

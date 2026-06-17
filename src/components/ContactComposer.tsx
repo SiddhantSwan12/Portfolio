@@ -3,11 +3,18 @@
 import { useEffect, useId, useState } from "react";
 import { profile } from "@/lib/content";
 
+type Status = "idle" | "sending" | "sent" | "error";
+
+// ─── Replace this with your Web3Forms access key ───
+// Get one for free at https://web3forms.com (enter your email → check inbox)
+const WEB3FORMS_KEY = "0df4f791-955a-4999-8691-30b59c50e1c8";
+
 export function ContactComposer() {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [from, setFrom] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
   const titleId = useId();
 
   useEffect(() => {
@@ -21,24 +28,46 @@ export function ContactComposer() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const sendEmail = () => {
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name.trim() || "a visitor"}`);
-    const body = encodeURIComponent(
-      [
-        `Hi ${profile.name},`,
-        "",
-        message.trim() || "I wanted to get in touch after viewing your portfolio.",
-        "",
-        "Best,",
-        name.trim() || "A portfolio visitor",
-        from.trim() ? from.trim() : "",
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    );
-
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+  const handleClose = () => {
     setOpen(false);
+    // Reset form after closing
+    setTimeout(() => {
+      setName("");
+      setFrom("");
+      setMessage("");
+      setStatus("idle");
+    }, 300);
+  };
+
+  const handleSend = async () => {
+    if (!name.trim() || !from.trim() || !message.trim()) return;
+
+    setStatus("sending");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Portfolio inquiry from ${name.trim()}`,
+          from_name: name.trim(),
+          email: from.trim(),
+          message: message.trim(),
+          to: profile.email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -56,7 +85,7 @@ export function ContactComposer() {
           <button
             type="button"
             aria-label="Close contact form"
-            onClick={() => setOpen(false)}
+            onClick={handleClose}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
@@ -75,54 +104,93 @@ export function ContactComposer() {
               </h2>
             </div>
 
-            <div className="flex flex-col gap-4 p-5">
-              <label className="flex flex-col gap-2">
-                <span className="font-mono text-xs uppercase tracking-wider text-text-muted">Name</span>
-                <input
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  className="rounded-lg border border-border-subtle bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition-colors focus:border-outline"
-                  autoFocus
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                <span className="font-mono text-xs uppercase tracking-wider text-text-muted">Email</span>
-                <input
-                  value={from}
-                  onChange={(event) => setFrom(event.target.value)}
-                  type="email"
-                  className="rounded-lg border border-border-subtle bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition-colors focus:border-outline"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                <span className="font-mono text-xs uppercase tracking-wider text-text-muted">Message</span>
-                <textarea
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
-                  rows={6}
-                  className="resize-none rounded-lg border border-border-subtle bg-surface-container-low px-3 py-2.5 text-sm leading-relaxed text-on-surface outline-none transition-colors focus:border-outline"
-                />
-              </label>
-
-              <div className="flex flex-wrap justify-end gap-3 pt-2">
+            {/* ── Success state ── */}
+            {status === "sent" ? (
+              <div className="flex flex-col items-center gap-4 p-10 text-center">
+                <span className="text-4xl">✓</span>
+                <h3 className="text-xl font-semibold text-primary">Message sent!</h3>
+                <p className="text-sm text-text-muted">
+                  Thanks for reaching out. I&apos;ll get back to you soon.
+                </p>
                 <button
                   type="button"
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg border border-border-subtle px-4 py-2.5 font-mono text-xs text-primary transition-colors hover:bg-surface-container-low"
+                  onClick={handleClose}
+                  className="mt-2 rounded-lg bg-primary px-5 py-2.5 font-mono text-xs text-on-primary transition-all hover:opacity-90 active:scale-95"
                 >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  onClick={sendEmail}
-                  className="rounded-lg bg-primary px-4 py-2.5 font-mono text-xs text-on-primary transition-all hover:opacity-90 active:scale-95"
-                >
-                  Open email
+                  Close
                 </button>
               </div>
-            </div>
+            ) : (
+              /* ── Form ── */
+              <div className="flex flex-col gap-4 p-5">
+                <label className="flex flex-col gap-2">
+                  <span className="font-mono text-xs uppercase tracking-wider text-text-muted">
+                    Name <span className="text-error">*</span>
+                  </span>
+                  <input
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    placeholder="Your name"
+                    className="rounded-lg border border-border-subtle bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-text-muted/50 focus:border-outline"
+                    autoFocus
+                    disabled={status === "sending"}
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  <span className="font-mono text-xs uppercase tracking-wider text-text-muted">
+                    Email <span className="text-error">*</span>
+                  </span>
+                  <input
+                    value={from}
+                    onChange={(event) => setFrom(event.target.value)}
+                    type="email"
+                    placeholder="your@email.com"
+                    className="rounded-lg border border-border-subtle bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-text-muted/50 focus:border-outline"
+                    disabled={status === "sending"}
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  <span className="font-mono text-xs uppercase tracking-wider text-text-muted">
+                    Message <span className="text-error">*</span>
+                  </span>
+                  <textarea
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                    rows={6}
+                    placeholder="What would you like to talk about?"
+                    className="resize-none rounded-lg border border-border-subtle bg-surface-container-low px-3 py-2.5 text-sm leading-relaxed text-on-surface outline-none transition-colors placeholder:text-text-muted/50 focus:border-outline"
+                    disabled={status === "sending"}
+                  />
+                </label>
+
+                {status === "error" && (
+                  <p className="rounded-lg border border-error/30 bg-error/10 px-3 py-2 text-xs text-error">
+                    Something went wrong. Please try again.
+                  </p>
+                )}
+
+                <div className="flex flex-wrap justify-end gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={handleClose}
+                    disabled={status === "sending"}
+                    className="rounded-lg border border-border-subtle px-4 py-2.5 font-mono text-xs text-primary transition-colors hover:bg-surface-container-low disabled:opacity-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSend}
+                    disabled={status === "sending" || !name.trim() || !from.trim() || !message.trim()}
+                    className="rounded-lg bg-primary px-4 py-2.5 font-mono text-xs text-on-primary transition-all hover:opacity-90 active:scale-95 disabled:opacity-50 disabled:active:scale-100"
+                  >
+                    {status === "sending" ? "Sending…" : "Send message"}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   description:
     "Software Engineer · Backend & GenAI. Python · FastAPI · LLMs · Solidity. Building real-world AI systems. Final-year @ VIT Pune.",
   metadataBase: new URL("https://siddhantswan.dev"),
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "Siddhant Swan — Software Engineer",
     description:
