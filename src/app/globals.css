@@ -139,7 +139,7 @@ body {
   opacity: 0;
   transform: scale(0.35) rotateX(72deg);
   transform-origin: center;
-  animation: pixel-theme 820ms var(--ease-premium) forwards;
+  animation: pixel-theme 520ms var(--ease-premium) forwards;
   animation-delay: var(--delay);
   box-shadow: 0 0 0 0.5px color-mix(in oklab, var(--color-primary) 10%, transparent);
 }

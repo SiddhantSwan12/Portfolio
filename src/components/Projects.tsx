@@ -2,6 +2,7 @@ import { projects, type ProjectStatus } from "@/lib/content";
 import { ProjectCover } from "./ProjectCover";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { SkillIcon, hasSkillIcon } from "./SkillIcon";
 
 const STATUS_COLOR: Record<ProjectStatus, string> = {
   Live: "bg-live",
@@ -34,15 +35,26 @@ export function Projects() {
                   </span>
                 </div>
                 <p className="text-base leading-relaxed text-text-muted">{p.description}</p>
-                <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                  {p.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded border border-border-subtle bg-surface-container-low px-2.5 py-1 font-mono text-[11px] text-on-surface-variant"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                <div className="mt-auto flex flex-wrap items-center gap-2 pt-2">
+                  {p.tech.map((t) =>
+                    hasSkillIcon(t) ? (
+                      <span
+                        key={t}
+                        title={t}
+                        aria-label={t}
+                        className="grid size-8 place-items-center rounded border border-border-subtle bg-surface-container-low text-on-surface-variant transition-colors hover:border-outline hover:text-on-surface"
+                      >
+                        <SkillIcon name={t} className="size-4 shrink-0" />
+                      </span>
+                    ) : (
+                      <span
+                        key={t}
+                        className="inline-flex h-8 items-center rounded border border-border-subtle bg-surface-container-low px-2.5 font-mono text-[11px] text-on-surface-variant"
+                      >
+                        {t}
+                      </span>
+                    ),
+                  )}
                 </div>
               </div>
             </div>

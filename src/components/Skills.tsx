@@ -1,6 +1,7 @@
 import { skillGroups } from "@/lib/content";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { SkillIcon, hasSkillIcon } from "./SkillIcon";
 
 export function Skills() {
   return (
@@ -34,8 +35,11 @@ export function Skills() {
               {group.items.map((item) => (
                 <span
                   key={item}
-                  className="rounded border border-border-subtle bg-surface-container-low px-3 py-1.5 font-mono text-xs text-on-surface transition-colors hover:border-outline hover:bg-surface-container"
+                  className="inline-flex items-center gap-1.5 rounded border border-border-subtle bg-surface-container-low px-3 py-1.5 font-mono text-xs text-on-surface transition-colors hover:border-outline hover:bg-surface-container"
                 >
+                  {hasSkillIcon(item) && (
+                    <SkillIcon name={item} className="size-3.5 shrink-0 text-on-surface-variant" />
+                  )}
                   {item}
                 </span>
               ))}

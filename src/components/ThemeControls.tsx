@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore, type MouseEvent } from "react";
+import { playSwitchSound } from "@/lib/sound";
 
 type Theme = "dark" | "light";
 
@@ -56,6 +57,7 @@ export function ThemeToggle() {
   const theme = useSyncExternalStore(subscribeToTheme, getInitialTheme, () => "dark");
 
   const toggleTheme = (event: MouseEvent<HTMLButtonElement>) => {
+    playSwitchSound();
     const next = theme === "dark" ? "light" : "dark";
     document.querySelectorAll(".theme-pixel-wipe, .theme-switch-wipe").forEach((node) => node.remove());
     const rect = event.currentTarget.getBoundingClientRect();
@@ -90,7 +92,7 @@ export function ThemeToggle() {
         const tileCenterY = tileY + GRID_H / 2;
         const distance = Math.hypot(tileCenterX - originX, tileCenterY - originY);
         const normalized = distance / Math.hypot(window.innerWidth, window.innerHeight);
-        tile.style.setProperty("--delay", `${Math.round(normalized * 280)}ms`);
+        tile.style.setProperty("--delay", `${Math.round(normalized * 150)}ms`);
         wipe.appendChild(tile);
       }
     }
@@ -101,9 +103,9 @@ export function ThemeToggle() {
       document.documentElement.dataset.theme = next;
       window.localStorage.setItem("theme", next);
       window.dispatchEvent(new Event("theme-change"));
-    }, 180);
+    }, 110);
 
-    window.setTimeout(() => wipe.remove(), 1300);
+    window.setTimeout(() => wipe.remove(), 820);
   };
 
   return (
