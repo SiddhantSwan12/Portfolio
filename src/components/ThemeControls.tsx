@@ -83,6 +83,12 @@ export function ThemeToggle() {
     wipe.style.setProperty("--cell-h", `${GRID_H}px`);
     wipe.style.setProperty("--offset-x", `-${GRID_W - offsetX}px`);
 
+    const SPREAD = 150;
+    // white -> dark converges into the button; dark -> white emanates outward.
+    const inward = next === "dark";
+    const tiles: { node: HTMLSpanElement; distance: number }[] = [];
+    let maxDistance = 0;
+
     for (let row = 0; row < rows; row += 1) {
       for (let col = 0; col < cols; col += 1) {
         const tile = document.createElement("span");
@@ -91,19 +97,29 @@ export function ThemeToggle() {
         const tileCenterX = tileX + GRID_W / 2;
         const tileCenterY = tileY + GRID_H / 2;
         const distance = Math.hypot(tileCenterX - originX, tileCenterY - originY);
-        const normalized = distance / Math.hypot(window.innerWidth, window.innerHeight);
-        tile.style.setProperty("--delay", `${Math.round(normalized * 150)}ms`);
+        if (distance > maxDistance) maxDistance = distance;
+        tiles.push({ node: tile, distance });
         wipe.appendChild(tile);
       }
     }
 
+    for (const { node, distance } of tiles) {
+      const normalized = maxDistance > 0 ? distance / maxDistance : 0;
+      const factor = inward ? 1 - normalized : normalized;
+      node.style.setProperty("--delay", `${Math.round(factor * SPREAD)}ms`);
+    }
+
     document.body.appendChild(wipe);
 
-    window.setTimeout(() => {
-      document.documentElement.dataset.theme = next;
-      window.localStorage.setItem("theme", next);
-      window.dispatchEvent(new Event("theme-change"));
-    }, 110);
+    // Outward covers the button first (swap early); inward covers it last (swap late).
+    window.setTimeout(
+      () => {
+        document.documentElement.dataset.theme = next;
+        window.localStorage.setItem("theme", next);
+        window.dispatchEvent(new Event("theme-change"));
+      },
+      inward ? SPREAD + 140 : 110,
+    );
 
     window.setTimeout(() => wipe.remove(), 820);
   };

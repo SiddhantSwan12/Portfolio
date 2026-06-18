@@ -128,38 +128,39 @@ body {
   grid-template-columns: repeat(var(--grid-cols, 8), var(--cell-w, 284px));
   grid-template-rows: repeat(var(--grid-rows, 10), var(--cell-h, 112px));
   pointer-events: none;
-  contain: layout style;
+  contain: layout style paint;
   overflow: hidden;
+  perspective: 1400px;
 }
 
 .theme-pixel-wipe > span {
-  background:
-    linear-gradient(135deg, color-mix(in oklab, var(--pixel-bg) 92%, transparent), var(--pixel-bg)),
-    var(--pixel-bg);
+  /* Flat fill so only transform + opacity animate (GPU-composited, no repaint). */
+  background: var(--pixel-bg);
   opacity: 0;
-  transform: scale(0.35) rotateX(72deg);
+  transform: scale(0.55) rotateX(55deg);
   transform-origin: center;
-  animation: pixel-theme 520ms var(--ease-premium) forwards;
+  animation: pixel-theme 560ms var(--ease-premium) forwards;
   animation-delay: var(--delay);
-  box-shadow: 0 0 0 0.5px color-mix(in oklab, var(--color-primary) 10%, transparent);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 @keyframes pixel-theme {
   0% {
     opacity: 0;
-    transform: scale(0.35) rotateX(72deg);
+    transform: scale(0.55) rotateX(55deg);
   }
-  28% {
+  30% {
     opacity: 1;
     transform: scale(1) rotateX(0deg);
   }
-  68% {
+  70% {
     opacity: 1;
     transform: scale(1) rotateX(0deg);
   }
   100% {
     opacity: 0;
-    transform: scale(1.04) rotateX(0deg);
+    transform: scale(1.03) rotateX(0deg);
   }
 }
 
