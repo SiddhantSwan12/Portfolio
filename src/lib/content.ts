@@ -122,6 +122,7 @@ export const projects: Project[] = [
       "Decentralized freelance marketplace on the Polygon Amoy testnet. React/Next.js front end plus a Python AI arbitration pipeline; smart-contract escrow removes platform trust. REST flows validated for concurrency, upload and timeout edge cases.",
     tech: ["React", "Next.js", "Python", "Solidity", "Polygon", "XMTP", "Supabase", "IPFS"],
     cover: "mesh",
+    href: "https://fair-work-escrow.onrender.com",
   },
   {
     name: "CommunityAI",
