@@ -76,7 +76,7 @@ export function ThemeToggle() {
 
     const wipe = document.createElement("span");
     wipe.className = "theme-pixel-wipe";
-    wipe.style.setProperty("--pixel-bg", next === "light" ? "#ffffff" : "#131316");
+    wipe.style.setProperty("--pixel-bg", next === "light" ? "#ffffff" : "#050506");
     wipe.style.setProperty("--grid-cols", `${cols}`);
     wipe.style.setProperty("--grid-rows", `${rows}`);
     wipe.style.setProperty("--cell-w", `${GRID_W}px`);

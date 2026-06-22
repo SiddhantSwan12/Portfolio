@@ -3,15 +3,15 @@
 /* Design tokens — see DESIGN.md ("Technical Precision"). */
 @theme {
   /* Surfaces (darkest -> lightest) */
-  --color-background: #131316;
-  --color-surface: #131316;
-  --color-surface-container-lowest: #0e0e11;
-  --color-surface-container-low: #1b1b1e;
-  --color-surface-container: #1f1f22;
-  --color-surface-container-high: #2a2a2d;
-  --color-surface-container-highest: #353438;
-  --color-surface-variant: #353438;
-  --color-surface-bright: #39393c;
+  --color-background: #050506;
+  --color-surface: #050506;
+  --color-surface-container-lowest: #08080a;
+  --color-surface-container-low: #0d0d10;
+  --color-surface-container: #121216;
+  --color-surface-container-high: #19191d;
+  --color-surface-container-highest: #222227;
+  --color-surface-variant: #202024;
+  --color-surface-bright: #25252a;
 
   /* Content / text */
   --color-primary: #ffffff;
@@ -22,7 +22,7 @@
   --color-text-muted: #71717a;
 
   /* Structure */
-  --color-border-subtle: #27272a;
+  --color-border-subtle: #1d1d22;
   --color-outline: #8e9192;
   --color-outline-variant: #444748;
 
@@ -50,11 +50,11 @@
 
 :root {
   color-scheme: dark;
-  --grid-line: rgba(255, 255, 255, 0.18);
-  --grid-lines: url("data:image/svg+xml,%3Csvg width='284' height='112' viewBox='0 0 284 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .5H284M.5 0V112' stroke='%23ffffff' stroke-opacity='.18' stroke-width='1' stroke-dasharray='1 6'/%3E%3C/svg%3E");
-  --ambient-glow: rgba(255, 255, 255, 0.04);
-  --contrib-level-0: #2a2a2d;
-  --contrib-level-1: #444748;
+  --grid-line: rgba(255, 255, 255, 0.13);
+  --grid-lines: url("data:image/svg+xml,%3Csvg width='284' height='112' viewBox='0 0 284 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .5H284M.5 0V112' stroke='%23ffffff' stroke-opacity='.13' stroke-width='1' stroke-dasharray='1 6'/%3E%3C/svg%3E");
+  --ambient-glow: rgba(255, 255, 255, 0.025);
+  --contrib-level-0: #19191d;
+  --contrib-level-1: #333337;
   --contrib-level-2: #5d5f5f;
   --contrib-level-3: #8e9192;
   --contrib-level-4: #e4e1e6;
