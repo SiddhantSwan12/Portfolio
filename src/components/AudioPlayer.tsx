@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 /**
  * Headless lofi audio controller — audio element + state.
  * The UI lives in Nav.tsx via the NavPlayButton export.
  */
 let globalAudio: HTMLAudioElement | null = null;
-let globalListeners: Set<() => void> = new Set();
+const globalListeners: Set<() => void> = new Set();
 
 function notifyListeners() {
   globalListeners.forEach((fn) => fn());
@@ -38,7 +38,7 @@ export function useAudioPlayer() {
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
-    if (audio.readyState >= 4) setReady(true);
+    if (audio.readyState >= 4) window.setTimeout(onCanPlay, 0);
 
     const syncState = () => setPlaying(!audio.paused);
     globalListeners.add(syncState);

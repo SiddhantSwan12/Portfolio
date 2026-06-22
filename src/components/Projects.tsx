@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { projects, type ProjectStatus } from "@/lib/content";
 import { ProjectCover } from "./ProjectCover";
 import { Reveal } from "./Reveal";
@@ -10,76 +11,165 @@ const STATUS_COLOR: Record<ProjectStatus, string> = {
   "Not Started": "bg-idle",
 };
 
+const STATUS_TEXT: Record<ProjectStatus, string> = {
+  Live: "text-primary",
+  Building: "text-on-surface-variant",
+  "Not Started": "text-text-muted",
+};
+
 export function Projects() {
   return (
     <section id="projects" className="mx-auto flex w-full max-w-container min-w-0 flex-col gap-10 px-4 md:px-16">
       <SectionHeading index="02" eyebrow="Things I've built" title="Projects" />
 
-      <div className="grid min-w-0 grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="grid min-w-0 grid-cols-1 gap-px overflow-hidden rounded-xl border border-border-subtle bg-border-subtle md:grid-cols-2">
         {projects.map((p, i) => (
           <Reveal
             key={p.name}
             delay={(i % 2) * 0.06}
             as="article"
-            className="group relative flex overflow-hidden rounded-xl border border-border-subtle bg-surface-container-lowest transition-colors hover:border-outline-variant"
+            className="group relative min-h-[560px] bg-background p-5 transition-colors hover:bg-surface-container-lowest md:p-8"
           >
-            <div className="flex w-full flex-col">
-              <ProjectCover kind={p.cover} />
-              <div className="flex flex-1 flex-col gap-4 p-6">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-xl font-semibold text-primary">{p.name}</h3>
-                  <span className="flex shrink-0 items-center gap-1.5 rounded border border-border-subtle bg-surface-container-high px-2 py-1 font-mono text-xs text-primary">
-                    <span className={`size-2 rounded-full ${STATUS_COLOR[p.status]}`} />
-                    {p.status}
-                    <span className="text-text-muted">· {p.year}</span>
-                  </span>
+            <div className="flex h-full min-w-0 flex-col">
+              <ProjectMedia image={p.image} name={p.name} cover={p.cover} priority={i < 2} />
+
+              <div className="mt-8 flex min-w-0 flex-1 flex-col">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="min-w-0 text-2xl font-semibold tracking-tight text-primary md:text-3xl">
+                    {p.name}
+                  </h3>
+                  <StatusPill status={p.status} year={p.year} />
                 </div>
-                <p className="text-base leading-relaxed text-text-muted">{p.description}</p>
-                <div className="mt-auto flex flex-wrap items-center gap-2 pt-2">
-                  {p.tech.map((t) =>
-                    hasSkillIcon(t) ? (
-                      <span
-                        key={t}
-                        title={t}
-                        aria-label={t}
-                        className="grid size-8 place-items-center rounded border border-border-subtle bg-surface-container-low text-on-surface-variant transition-colors hover:border-outline hover:text-on-surface"
-                      >
-                        <SkillIcon name={t} className="size-4 shrink-0" />
-                      </span>
-                    ) : (
-                      <span
-                        key={t}
-                        className="inline-flex h-8 items-center rounded border border-border-subtle bg-surface-container-low px-2.5 font-mono text-[11px] text-on-surface-variant"
-                      >
-                        {t}
-                      </span>
-                    ),
-                  )}
+
+                <p className="mt-5 max-w-[36rem] text-lg leading-relaxed text-text-muted">
+                  {p.description}
+                </p>
+
+                <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
+                  <TechList tech={p.tech} />
+                  <ProjectLink href={p.href} name={p.name} />
                 </div>
               </div>
             </div>
-
-            {p.href && (
-              <a
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-                aria-label={`View ${p.name} live`}
-              >
-                <span className="flex items-center gap-2 rounded-lg border border-outline bg-surface-container px-4 py-2.5 text-sm font-medium text-on-surface shadow-lg backdrop-blur-sm transition-transform duration-150 active:scale-95">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                  View Live
-                </span>
-              </a>
-            )}
           </Reveal>
         ))}
       </div>
     </section>
+  );
+}
+
+function ProjectMedia({
+  cover,
+  image,
+  name,
+  priority,
+}: {
+  cover: Parameters<typeof ProjectCover>[0]["kind"];
+  image?: string;
+  name: string;
+  priority: boolean;
+}) {
+  return (
+    <div className="relative overflow-hidden rounded-xl border border-border-subtle bg-surface-container-lowest p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-transform duration-500 ease-premium group-hover:-translate-y-1">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08),transparent_60%)]" />
+      <div className="relative aspect-[1.48] overflow-hidden rounded-lg border border-outline-variant/70 bg-background">
+        {image ? (
+          <Image
+            src={image}
+            alt={`${name} project screenshot`}
+            fill
+            priority={priority}
+            sizes="(min-width: 768px) 560px, calc(100vw - 72px)"
+            className="object-contain object-center opacity-90 transition duration-700 ease-premium group-hover:scale-[1.035] group-hover:opacity-100"
+          />
+        ) : (
+          <div className="absolute inset-0 transition duration-700 ease-premium group-hover:scale-[1.035]">
+            <ProjectCover kind={cover} className="h-full border-b-0" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function StatusPill({ status, year }: { status: ProjectStatus; year: string }) {
+  return (
+    <span
+      className={`inline-flex shrink-0 items-center gap-2 rounded-full border border-border-subtle bg-surface-container-lowest px-3 py-1.5 text-sm font-medium ${STATUS_TEXT[status]}`}
+    >
+      <span className={`size-2.5 rounded-full ${STATUS_COLOR[status]}`} />
+      {status}
+      <span className="hidden text-text-muted sm:inline">· {year}</span>
+    </span>
+  );
+}
+
+function TechList({ tech }: { tech: string[] }) {
+  return (
+    <div className="flex min-w-0 flex-1 flex-wrap items-center gap-3">
+      {tech.map((t) =>
+        hasSkillIcon(t) ? (
+          <span
+            key={t}
+            title={t}
+            aria-label={t}
+            className="grid size-7 place-items-center rounded bg-transparent text-on-surface-variant transition-colors hover:text-primary"
+          >
+            <SkillIcon name={t} className="size-5 shrink-0" />
+          </span>
+        ) : (
+          <span
+            key={t}
+            className="inline-flex h-7 items-center rounded bg-transparent font-mono text-xs text-on-surface-variant"
+          >
+            {t}
+          </span>
+        ),
+      )}
+    </div>
+  );
+}
+
+function ProjectLink({ href, name }: { href?: string; name: string }) {
+  const content = (
+    <>
+      <span>{href ? "View Project" : "Preview Soon"}</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+        className="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1"
+      >
+        <path d="M7 17 17 7" />
+        <path d="M7 7h10v10" />
+      </svg>
+    </>
+  );
+
+  if (!href) {
+    return (
+      <span className="group/link ml-auto inline-flex shrink-0 items-center gap-2 text-base font-semibold text-text-muted">
+        {content}
+      </span>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group/link ml-auto inline-flex shrink-0 items-center gap-2 text-base font-semibold text-text-muted transition-colors hover:text-primary"
+      aria-label={`View ${name} project`}
+    >
+      {content}
+    </a>
   );
 }

@@ -10,7 +10,7 @@ const COVER_LABEL: Record<CoverKind, string> = {
   waveform: "CommunityAI",
 };
 
-export function ProjectCover({ kind }: { kind: CoverKind }) {
+export function ProjectCover({ className = "h-52", kind }: { className?: string; kind: CoverKind }) {
   const reduce = useReducedMotion();
   const rawRotateX = useMotionValue(0);
   const rawRotateY = useMotionValue(0);
@@ -33,7 +33,7 @@ export function ProjectCover({ kind }: { kind: CoverKind }) {
 
   return (
     <motion.div
-      className="relative h-52 overflow-hidden border-b border-border-subtle bg-surface-container [perspective:900px]"
+      className={`relative overflow-hidden border-b border-border-subtle bg-surface-container [perspective:900px] ${className}`}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetTilt}
       whileHover={reduce ? undefined : { scale: 1.015 }}
