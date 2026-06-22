@@ -50,8 +50,8 @@
 
 :root {
   color-scheme: dark;
-  --grid-line: #141416;
-  --grid-lines: url("data:image/svg+xml,%3Csvg width='284' height='112' viewBox='0 0 284 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .5H284M.5 0V112' stroke='%23141416' stroke-width='1' stroke-dasharray='1 6'/%3E%3C/svg%3E");
+  --grid-line: #242428;
+  --grid-lines: url("data:image/svg+xml,%3Csvg width='284' height='112' viewBox='0 0 284 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .5H284M.5 0V112' stroke='%23242428' stroke-width='1' stroke-dasharray='1 6'/%3E%3C/svg%3E");
   --ambient-glow: transparent;
   --contrib-level-0: #19191d;
   --contrib-level-1: #333337;
