@@ -3,9 +3,9 @@
 /* Design tokens — see DESIGN.md ("Technical Precision"). */
 @theme {
   /* Surfaces (darkest -> lightest) */
-  --color-background: #050506;
-  --color-surface: #050506;
-  --color-surface-container-lowest: #08080a;
+  --color-background: #000000;
+  --color-surface: #000000;
+  --color-surface-container-lowest: #050506;
   --color-surface-container-low: #0d0d10;
   --color-surface-container: #121216;
   --color-surface-container-high: #19191d;
@@ -50,9 +50,9 @@
 
 :root {
   color-scheme: dark;
-  --grid-line: rgba(255, 255, 255, 0.13);
-  --grid-lines: url("data:image/svg+xml,%3Csvg width='284' height='112' viewBox='0 0 284 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .5H284M.5 0V112' stroke='%23ffffff' stroke-opacity='.13' stroke-width='1' stroke-dasharray='1 6'/%3E%3C/svg%3E");
-  --ambient-glow: rgba(255, 255, 255, 0.025);
+  --grid-line: #141416;
+  --grid-lines: url("data:image/svg+xml,%3Csvg width='284' height='112' viewBox='0 0 284 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .5H284M.5 0V112' stroke='%23141416' stroke-width='1' stroke-dasharray='1 6'/%3E%3C/svg%3E");
+  --ambient-glow: transparent;
   --contrib-level-0: #19191d;
   --contrib-level-1: #333337;
   --contrib-level-2: #5d5f5f;
