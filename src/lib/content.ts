@@ -114,6 +114,8 @@ export const projects: Project[] = [
       "Full-stack AI assistant spanning finance, health and education — React/Next.js front end with a Python (Langchain + FastAPI) backend. ~90% accuracy at sub-300ms latency, with reusable voice-to-text routing and a domain-switching UI.",
     tech: ["React", "Next.js", "Python", "Langchain", "FastAPI", "Supabase", "Gemini", "Tavily"],
     cover: "orbits",
+    image: "/projects/athena-ai.png",
+    href: "https://atheenaai.vercel.app",
   },
   {
     name: "FairWork",
