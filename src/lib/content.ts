@@ -7,11 +7,12 @@ export const profile = {
   subheadline:
     "Python · FastAPI · LLMs · Solidity — building real-world AI systems. Final-year @ VIT Pune.",
   tagline:
-    "I need to understand how things actually work — that curiosity pulled me from electronics → software → AI → blockchain.",
+    "Siddhant Swan is an AI/ML and software development enthusiast currently completing his B.Tech in Electronics & Telecommunication at VIT Pune with a GPA of 8.31.",
   intro: [
-    "I work at the intersection of backend systems and AI, where clean architecture and sharp logic both matter.",
-    "Production backend at Enovate IT, threat-intel as a SOC analyst, and cross-border BD with Grant Thornton China.",
-    "Currently studying for CFA Level 1 (Nov 2026) and doing competitive programming. Open to full-time SWE / AI roles from mid-2026.",
+    "His work focuses on building practical, real-world systems across AI/ML, backend development, APIs, and modern web technologies. He enjoys solving problems where clean logic, scalable architecture, and product thinking come together.",
+    "Before graduating, Siddhant gained experience across multiple domains, including backend development at Enovate IT, threat intelligence as a SOC analyst at Geeks Solutions, and cross-border business development strategy with Grant Thornton China across APAC markets.",
+    "He actively builds projects, practices competitive programming, and continues improving his skills in Python, FastAPI, machine learning, LLM-based applications, JavaScript, React, and Next.js.",
+    "Siddhant is actively looking for full-time Software Engineer, AI/ML Engineer, or Full-Stack Developer roles starting mid-2026.",
   ],
   email: "swansiddhant9@gmail.com",
   resumeUrl: "/resume.pdf",
