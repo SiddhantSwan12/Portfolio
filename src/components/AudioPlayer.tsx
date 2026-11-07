@@ -65,38 +65,29 @@ export function useAudioPlayer() {
 
 /**
  * Compact play/pause button for the Nav bar.
+ * Below md it stays out of the header until music is playing, so a phone always has a
+ * one-tap pause; starting playback there happens from the menu ("Play lofi").
+ * Playback is never gated on `ready`: iOS does not preload, so a gesture must be allowed to start it.
  */
 export function NavPlayButton() {
-  const { playing, ready, toggle } = useAudioPlayer();
+  const { playing, toggle } = useAudioPlayer();
 
-  // Keyboard shortcut: M to toggle music
-  // Also listen for 'toggle-music' event from CommandPalette
+  // The menu's "Play lofi" / "Pause lofi" entry drives this button through a window event.
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "m" && !e.metaKey && !e.ctrlKey && !e.altKey) {
-        const tag = (e.target as HTMLElement)?.tagName;
-        if (tag === "INPUT" || tag === "TEXTAREA") return;
-        toggle();
-      }
-    };
     const onToggleEvent = () => toggle();
-
-    window.addEventListener("keydown", onKey);
     window.addEventListener("toggle-music", onToggleEvent);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("toggle-music", onToggleEvent);
-    };
+    return () => window.removeEventListener("toggle-music", onToggleEvent);
   }, [toggle]);
 
   return (
     <button
       type="button"
       onClick={toggle}
-      disabled={!ready}
       aria-label={playing ? "Pause lofi music" : "Play lofi music"}
-      title={`${playing ? "Pause" : "Play"} lofi · press M`}
-      className="flex items-center gap-2 rounded-lg border border-border-subtle bg-surface-container-lowest px-2.5 py-1.5 font-mono text-xs text-text-muted transition-all hover:border-outline hover:text-on-surface active:scale-95 disabled:opacity-40"
+      title={`${playing ? "Pause" : "Play"} lofi`}
+      className={`${
+        playing ? "flex" : "hidden md:flex"
+      } min-h-9 items-center justify-center gap-2 rounded-lg border border-border-subtle bg-surface-container-lowest px-2.5 font-mono text-xs text-text-muted transition-all hover:border-outline hover:text-on-surface active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-outline pointer-coarse:min-h-11 pointer-coarse:min-w-11`}
     >
       {/* Mini equalizer */}
       <span className="flex items-end gap-[2px] h-3">
@@ -114,11 +105,7 @@ export function NavPlayButton() {
         ))}
       </span>
 
-      <span>{playing ? "Lofi" : "Play"}</span>
-
-      <kbd className="rounded border border-border-subtle bg-surface-container px-1.5 py-0.5 text-[10px] text-on-surface-variant">
-        M
-      </kbd>
+      <span className="hidden md:inline">{playing ? "Lofi" : "Play"}</span>
 
       {/* Inline keyframes */}
       <style jsx global>{`

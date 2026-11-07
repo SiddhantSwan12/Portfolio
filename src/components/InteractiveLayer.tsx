@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 
 const SECTIONS = [
   { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "open-source", label: "GitHub" },
+  { id: "experience", label: "Experience" },
+  { id: "open-source", label: "Activity" },
   { id: "skills", label: "Skills" },
   { id: "education", label: "Education" },
 ] as const;
@@ -110,12 +110,13 @@ function ScrollProgress() {
   return (
     <>
       <motion.div
-        className="fixed left-0 top-0 z-[70] h-px w-full origin-left bg-primary"
+        className="fixed left-0 top-0 z-[70] h-0.5 w-full origin-left bg-primary"
         style={{ scaleX }}
         aria-hidden
       />
+      {/* Section rail: only where there is a clear gutter beside the 1200px container. */}
       <nav
-        className="pointer-events-none fixed right-5 top-1/2 z-[60] hidden -translate-y-1/2 flex-col items-end gap-3 lg:flex"
+        className="pointer-events-none fixed right-5 top-1/2 z-[60] hidden -translate-y-1/2 flex-col items-end gap-3 min-[1440px]:flex"
         aria-label="Scroll sections"
       >
         {SECTIONS.map((section, index) => {
@@ -124,7 +125,7 @@ function ScrollProgress() {
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="pointer-events-auto group flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted"
+              className="pointer-events-auto group flex items-center gap-2 rounded-full font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-outline"
             >
               <motion.span
                 className="overflow-hidden whitespace-nowrap"
@@ -137,7 +138,7 @@ function ScrollProgress() {
                 {section.label}
               </motion.span>
               <motion.span
-                className="grid size-7 place-items-center rounded-full border border-border-subtle bg-surface-container-lowest text-[9px]"
+                className="grid size-7 place-items-center rounded-full border border-border-subtle bg-surface-container-lowest text-[11px]"
                 animate={{
                   borderColor: isActive ? "var(--color-outline)" : "var(--color-border-subtle)",
                   color: isActive ? "var(--color-primary)" : "var(--color-text-muted)",

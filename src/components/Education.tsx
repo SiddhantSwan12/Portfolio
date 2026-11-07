@@ -6,7 +6,7 @@ import { SectionHeading } from "./SectionHeading";
 export function Education() {
   return (
     <section id="education" className="mx-auto flex w-full max-w-container min-w-0 flex-col gap-10 px-4 md:px-16">
-      <SectionHeading index="05" eyebrow="Background" title="Education & Credentials" />
+      <SectionHeading title="Education & Credentials" />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
         {/* Education */}

@@ -6,18 +6,18 @@ import { SectionHeading } from "./SectionHeading";
 export function Experience() {
   return (
     <section id="experience" className="mx-auto flex w-full max-w-container min-w-0 flex-col gap-10 px-4 md:px-16">
-      <SectionHeading index="01" eyebrow="Where I've worked" title="Experience" />
+      <SectionHeading title="Experience" />
 
       <div className="ml-3 flex flex-col gap-12 border-l border-border-subtle">
         {experiences.map((xp, i) => (
-          <Reveal key={xp.org} delay={i * 0.05} as="article" className="relative pl-8">
+          <Reveal key={xp.org} delay={i * 0.05} as="article" className="relative pl-6 sm:pl-8">
             {/* Timeline dot — solid for the current role, hollow otherwise */}
             <span
               className={`absolute -left-[6.5px] top-1.5 size-3 rounded-full ring-4 ring-background ${
                 xp.active ? "bg-primary" : "border border-border-subtle bg-surface-variant"
               }`}
             />
-            <div className="flex flex-col gap-4 rounded-xl border border-border-subtle bg-surface-container-lowest p-5 transition-colors hover:border-outline-variant sm:flex-row sm:items-start">
+            <div className="flex flex-col gap-4 rounded-xl border border-border-subtle bg-surface-container-lowest p-4 transition-colors hover:border-outline-variant sm:flex-row sm:items-start sm:p-5">
               <CompanyLogo
                 alt={`${xp.logo.wordmark} logo`}
                 initials={xp.logo.initials}
@@ -35,7 +35,7 @@ export function Experience() {
                     {xp.location ? <span className="block">{xp.location}</span> : null}
                   </p>
                 </div>
-            <ul className="mt-3 flex list-inside list-disc flex-col gap-1.5 text-base leading-relaxed text-text-muted marker:text-outline-variant">
+            <ul className="mt-3 flex list-inside list-disc flex-col gap-1.5 text-base leading-relaxed text-on-surface-variant marker:text-outline-variant">
               {xp.bullets.map((b) => (
                 <li key={b}>{b}</li>
               ))}

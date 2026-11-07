@@ -7,6 +7,7 @@ import { Skills } from "@/components/Skills";
 import { Education } from "@/components/Education";
 import { Footer } from "@/components/Footer";
 import { InteractiveLayer } from "@/components/InteractiveLayer";
+import { MobileBar } from "@/components/MobileBar";
 
 export default function Home() {
   return (
@@ -15,13 +16,14 @@ export default function Home() {
       <Nav />
       <main className="flex flex-col gap-24 pb-8 md:gap-32">
         <Hero />
-        <Experience />
         <Projects />
+        <Experience />
         <OpenSource />
         <Skills />
         <Education />
       </main>
       <Footer />
+      <MobileBar />
     </>
   );
 }

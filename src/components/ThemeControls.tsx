@@ -131,7 +131,7 @@ export function ThemeToggle() {
       suppressHydrationWarning
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="relative grid size-9 place-items-center rounded-lg border border-border-subtle bg-surface-container-lowest text-primary transition-colors hover:border-outline active:scale-95"
+      className="relative grid size-9 place-items-center rounded-lg border border-border-subtle bg-surface-container-lowest text-primary transition-colors hover:border-outline active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-outline pointer-coarse:size-11"
     >
       <span
         className={`absolute size-4 rounded-full border border-current transition-all duration-300 ${

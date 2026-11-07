@@ -11,12 +11,14 @@ export function Reveal({
   delay = 0,
   y = 16,
   className,
+  id,
   as = "div",
 }: {
   children: ReactNode;
   delay?: number;
   y?: number;
   className?: string;
+  id?: string;
   as?: "div" | "section" | "li" | "article" | "header" | "footer";
 }) {
   const reduce = useReducedMotion();
@@ -24,6 +26,7 @@ export function Reveal({
 
   return (
     <MotionTag
+      id={id}
       className={className}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}

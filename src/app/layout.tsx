@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { education, profile, siteUrl, socials } from "@/lib/content";
@@ -39,6 +39,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
+};
+
+// viewport-fit=cover lets the phone action bar pad itself past the home indicator.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 // Structured data so search engines connect the site, GitHub and LinkedIn to one person.

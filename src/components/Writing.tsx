@@ -5,7 +5,7 @@ import { SectionHeading } from "./SectionHeading";
 export function Writing() {
   return (
     <section id="writing" className="mx-auto flex w-full max-w-container min-w-0 flex-col gap-10 px-4 md:px-16">
-      <SectionHeading index="06" eyebrow="Notes & ideas" title="Writing" />
+      <SectionHeading title="Writing" />
 
       {posts.length === 0 ? (
         <Reveal className="flex flex-col items-start gap-3 rounded-xl border border-dashed border-border-subtle bg-surface-container-lowest p-8">

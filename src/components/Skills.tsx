@@ -6,7 +6,7 @@ import { SkillIcon, hasSkillIcon } from "./SkillIcon";
 export function Skills() {
   return (
     <section id="skills" className="mx-auto flex w-full max-w-container min-w-0 flex-col gap-10 px-4 md:px-16">
-      <SectionHeading index="04" eyebrow="My toolkit" title="Skills & Technologies" />
+      <SectionHeading title="Skills & Technologies" />
 
       <div className="grid gap-px overflow-hidden rounded-xl border border-border-subtle bg-border-subtle md:grid-cols-2">
         {skillGroups.map((group, i) => (

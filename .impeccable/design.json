@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T15:05:00Z",
+  "title": "Design System: Siddhant Swan Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "surface": { "role": "neutral", "displayName": "True Black", "canonical": "#000000", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "surface-container-lowest": { "role": "neutral", "displayName": "Bench Black", "canonical": "#050506", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "surface-container-low": { "role": "neutral", "displayName": "Soot", "canonical": "#0d0d10", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "surface-container": { "role": "neutral", "displayName": "Charcoal", "canonical": "#121216", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "surface-container-high": { "role": "neutral", "displayName": "Graphite", "canonical": "#19191d", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "surface-container-highest": { "role": "neutral", "displayName": "Slate", "canonical": "#222227", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "surface-variant": { "role": "neutral", "displayName": "Iron", "canonical": "#202024", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "surface-bright": { "role": "neutral", "displayName": "Iron Bright", "canonical": "#25252a", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#19191d", "#222227", "#444748", "#8e9192", "#e4e1e6"] },
+      "primary": { "role": "primary", "displayName": "Lamp White", "canonical": "#ffffff", "tonalRamp": ["#000000", "#19191d", "#444748", "#8b8b94", "#8e9192", "#c4c7c8", "#e4e1e6", "#ffffff"] },
+      "on-primary": { "role": "primary", "displayName": "Ink on White", "canonical": "#2f3131", "tonalRamp": ["#000000", "#121216", "#2f3131", "#444748", "#8e9192", "#c4c7c8", "#e4e1e6", "#ffffff"] },
+      "on-surface": { "role": "neutral", "displayName": "Soft White", "canonical": "#e4e1e6", "tonalRamp": ["#000000", "#19191d", "#444748", "#8b8b94", "#8e9192", "#c4c7c8", "#e4e1e6", "#ffffff"] },
+      "on-surface-variant": { "role": "neutral", "displayName": "Cool Gray", "canonical": "#c4c7c8", "tonalRamp": ["#000000", "#19191d", "#444748", "#8b8b94", "#8e9192", "#c4c7c8", "#e4e1e6", "#ffffff"] },
+      "text-muted": { "role": "neutral", "displayName": "Pewter", "canonical": "#8b8b94", "tonalRamp": ["#000000", "#19191d", "#444748", "#8b8b94", "#8e9192", "#c4c7c8", "#e4e1e6", "#ffffff"] },
+      "border-subtle": { "role": "neutral", "displayName": "Hairline", "canonical": "#1d1d22", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#1d1d22", "#242428", "#444748", "#8e9192", "#e4e1e6"] },
+      "outline": { "role": "neutral", "displayName": "Lit Edge", "canonical": "#8e9192", "tonalRamp": ["#000000", "#1d1d22", "#242428", "#444748", "#8e9192", "#c4c7c8", "#e4e1e6", "#ffffff"] },
+      "outline-variant": { "role": "neutral", "displayName": "Dim Edge", "canonical": "#444748", "tonalRamp": ["#000000", "#1d1d22", "#242428", "#444748", "#8e9192", "#c4c7c8", "#e4e1e6", "#ffffff"] },
+      "grid-line": { "role": "neutral", "displayName": "Grid Stitch", "canonical": "#242428", "tonalRamp": ["#000000", "#050506", "#0d0d10", "#1d1d22", "#242428", "#444748", "#8e9192", "#e4e1e6"] },
+      "live": { "role": "tertiary", "displayName": "Live Green", "canonical": "#10b981", "tonalRamp": ["oklch(22% 0.05 162)", "oklch(32% 0.08 162)", "oklch(44% 0.12 162)", "oklch(57% 0.15 162)", "oklch(69.6% 0.17 162)", "oklch(80% 0.12 162)", "oklch(90% 0.07 162)", "oklch(96% 0.03 162)"] },
+      "building": { "role": "tertiary", "displayName": "Building Amber", "canonical": "#f59e0b", "tonalRamp": ["oklch(22% 0.05 70)", "oklch(34% 0.08 70)", "oklch(46% 0.12 70)", "oklch(60% 0.15 70)", "oklch(76.9% 0.165 70)", "oklch(85% 0.12 70)", "oklch(92% 0.07 70)", "oklch(97% 0.03 70)"] },
+      "idle": { "role": "tertiary", "displayName": "Archive Zinc", "canonical": "#71717a", "tonalRamp": ["oklch(15% 0.01 286)", "oklch(25% 0.012 286)", "oklch(35% 0.015 286)", "oklch(45% 0.015 286)", "oklch(55% 0.015 286)", "oklch(68% 0.012 286)", "oklch(82% 0.008 286)", "oklch(95% 0.004 286)"] },
+      "error": { "role": "tertiary", "displayName": "Error Rose", "canonical": "#ffb4ab", "tonalRamp": ["oklch(22% 0.08 25)", "oklch(34% 0.12 25)", "oklch(46% 0.16 25)", "oklch(58% 0.18 25)", "oklch(70% 0.15 25)", "oklch(84% 0.09 25)", "oklch(92% 0.05 25)", "oklch(97% 0.02 25)"] },
+      "activity-0": { "role": "neutral", "displayName": "Activity 0", "canonical": "#19191d", "tonalRamp": ["#19191d", "#333337", "#5d5f5f", "#8e9192", "#e4e1e6"] },
+      "activity-1": { "role": "neutral", "displayName": "Activity 1", "canonical": "#333337", "tonalRamp": ["#19191d", "#333337", "#5d5f5f", "#8e9192", "#e4e1e6"] },
+      "activity-2": { "role": "neutral", "displayName": "Activity 2", "canonical": "#5d5f5f", "tonalRamp": ["#19191d", "#333337", "#5d5f5f", "#8e9192", "#e4e1e6"] },
+      "activity-3": { "role": "neutral", "displayName": "Activity 3", "canonical": "#8e9192", "tonalRamp": ["#19191d", "#333337", "#5d5f5f", "#8e9192", "#e4e1e6"] },
+      "activity-4": { "role": "neutral", "displayName": "Activity 4", "canonical": "#e4e1e6", "tonalRamp": ["#19191d", "#333337", "#5d5f5f", "#8e9192", "#e4e1e6"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name only; 48px from 768px, 36px from 640px, 30px below." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings and featured project titles (24px on phones)." },
+      "title": { "displayName": "Title", "purpose": "Card titles, employer names, dialog titles." },
+      "body": { "displayName": "Body", "purpose": "Reading copy, bullets, descriptions; ~70ch max." },
+      "body-lead": { "displayName": "Body Lead", "purpose": "Hero tagline and featured descriptions from 768px." },
+      "label": { "displayName": "Label", "purpose": "Buttons, nav links, chips, tags, metadata, palette rows. Mono, one weight." },
+      "caption": { "displayName": "Caption", "purpose": "Uppercase 11px mono for periods, issuers, indices and banner labels; tracking widens to 0.18em on the rail." }
+    },
+    "themes": {
+      "light": {
+        "surface": "#ffffff",
+        "surface-container-lowest": "#f7f7f5",
+        "surface-container-low": "#efefec",
+        "surface-container": "#e7e7e3",
+        "surface-container-high": "#deded8",
+        "surface-container-highest": "#d1d1ca",
+        "surface-variant": "#d8d8d2",
+        "surface-bright": "#fafaf8",
+        "primary": "#111114",
+        "on-primary": "#ffffff",
+        "on-surface": "#19191c",
+        "on-surface-variant": "#454548",
+        "text-muted": "#64646a",
+        "border-subtle": "#dfdfda",
+        "outline": "#55555a",
+        "outline-variant": "#b9b9b2",
+        "grid-line": "rgba(17, 17, 20, 0.2)",
+        "ambient-glow": "rgba(17, 17, 20, 0.035)",
+        "error": "#b3261e",
+        "activity-0": "#e7e7e3",
+        "activity-1": "#cfcfc8",
+        "activity-2": "#a8a8a0",
+        "activity-3": "#6f6f73",
+        "activity-4": "#19191c"
+      }
+    },
+    "shadows": [
+      { "name": "overlay", "value": "0 25px 50px -12px rgba(0, 0, 0, 0.5)", "purpose": "The command palette only, over a rgba(0,0,0,0.6) scrim with an 8px backdrop blur." },
+      { "name": "glyph-glow", "value": "0 0 24px rgba(255, 255, 255, 0.05)", "purpose": "The centre tile of a generative project cover; lit from within, not raised." },
+      { "name": "banner-label", "value": "0 1px 18px rgba(0, 0, 0, 0.45)", "purpose": "Legibility of the mono label pill over the illustrated hero banner." }
+    ],
+    "motion": [
+      { "name": "ease-premium", "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "purpose": "The only easing curve: colour changes, reveals, the pixel wipe, the palette, the banner crossfade." },
+      { "name": "duration-color", "value": "150ms-300ms", "purpose": "Hover and focus colour changes on controls, cards and links; the header fill takes 300ms." },
+      { "name": "duration-reveal", "value": "600ms", "purpose": "Scroll reveal: rise 16px and fade in once when 12% in view; children stagger by 60ms." },
+      { "name": "duration-palette", "value": "150ms / 180ms", "purpose": "Palette scrim fade and dialog rise (8px, scale 0.98 to 1)." },
+      { "name": "pixel-wipe", "value": "560ms per tile, 150ms stagger by distance", "purpose": "Theme switch: 284x112px tiles scale from 0.55 and un-tilt from 55deg; outward to light, inward to dark." },
+      { "name": "banner-crossfade", "value": "1200ms", "purpose": "Night layer opacity and overlay gradients follow the theme." },
+      { "name": "banner-sheen", "value": "10s sweep, 4s pause", "purpose": "A one-third-width highlight crossing the hero banner." },
+      { "name": "spring-cursor", "value": "stiffness 420 / damping 34 (dot), 150 / 24 (ring)", "purpose": "Custom cursor follow; the ring lags the dot." },
+      { "name": "spring-progress", "value": "stiffness 120 / damping 24 / mass 0.35", "purpose": "Smoothed scroll progress bar." },
+      { "name": "press", "value": "scale(0.95)", "purpose": "Active state on buttons and the logo." },
+      { "name": "reduced-motion", "value": "animation and transition durations 0.001ms, scroll-behavior auto", "purpose": "prefers-reduced-motion disables every effect, including springs, loops and the custom cursor." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px", "purpose": "Header clock appears; menu glyph becomes the Search label; banner grows to 160px." },
+      { "name": "md", "value": "768px", "purpose": "Header links and Résumé button appear; phone action bar hides; grids split; 64px gutters; 128px section gaps." },
+      { "name": "rail", "value": "1440px", "purpose": "Section rail appears beside the 1200px column." },
+      { "name": "bar-max-height", "value": "440px (max-height)", "purpose": "Landscape phones hide the bottom action bar." },
+      { "name": "pointer-coarse", "value": "(pointer: coarse)", "purpose": "Controls grow to 44px; keyboard badges and the palette legend hide; palette focus parks on the dialog." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one lit action per view: Get in touch, or Résumé in the header.",
+      "html": "<button class=\"ds-btn-primary\">Get in touch</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;min-height:44px;padding:0 24px;border:0;border-radius:8px;background:var(--color-primary,#ffffff);color:var(--color-on-primary,#2f3131);font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:14px;font-weight:500;cursor:pointer;transition:opacity .15s cubic-bezier(.2,.8,.2,1),transform .15s cubic-bezier(.2,.8,.2,1)}.ds-btn-primary:hover{opacity:.9}.ds-btn-primary:active{transform:scale(.95)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-outline,#8e9192);outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Hairline-bordered companion to the primary: View résumé, Cancel.",
+      "html": "<button class=\"ds-btn-secondary\">View résumé</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:8px;background:transparent;color:var(--color-primary,#ffffff);font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:14px;font-weight:500;cursor:pointer;transition:background-color .15s cubic-bezier(.2,.8,.2,1)}.ds-btn-secondary:hover{background:var(--color-surface-container-low,#0d0d10)}.ds-btn-secondary:focus-visible{outline:2px solid var(--color-outline,#8e9192);outline-offset:2px}"
+    },
+    {
+      "name": "Header Control",
+      "kind": "button",
+      "refersTo": "control-header",
+      "description": "The dim tooling at the edge of the bench: clock, lofi, theme and search share this shell. Shown here as Search with its keyboard badge.",
+      "html": "<button class=\"ds-control\" aria-label=\"Menu and search\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg><span>Search</span><kbd class=\"ds-kbd\">Ctrl K</kbd></button>",
+      "css": ".ds-control{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:8px;background:var(--color-surface-container-lowest,#050506);color:var(--color-text-muted,#8b8b94);font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:12px;font-weight:500;cursor:pointer;transition:color .15s cubic-bezier(.2,.8,.2,1),border-color .15s cubic-bezier(.2,.8,.2,1)}.ds-control:hover{border-color:var(--color-outline,#8e9192);color:var(--color-on-surface,#e4e1e6)}.ds-control:focus-visible{outline:2px solid var(--color-outline,#8e9192);outline-offset:2px}.ds-kbd{padding:2px 6px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:4px;background:var(--color-surface-container,#121216);color:var(--color-on-surface-variant,#c4c7c8);font:inherit;font-size:10px}@media (pointer:coarse){.ds-control{min-height:44px;min-width:44px}.ds-kbd{display:none}}"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed 64px header: logo mark and handle, four anchor links, and the control cluster. Links are real anchors.",
+      "html": "<nav class=\"ds-header\"><a class=\"ds-logo\" href=\"#\"><span class=\"ds-logo-mark\">&lt;/&gt;</span><span>siddhantswan</span></a><div class=\"ds-nav-links\"><a class=\"ds-nav-link\" href=\"#projects\">Projects</a><a class=\"ds-nav-link\" href=\"#experience\">Experience</a><a class=\"ds-nav-link\" href=\"#open-source\">Activity</a><a class=\"ds-nav-link\" href=\"#skills\">Skills</a></div><a class=\"ds-nav-cta\" href=\"#\">Résumé</a></nav>",
+      "css": ".ds-header{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;padding:0 16px;border-bottom:1px solid var(--color-border-subtle,#1d1d22);background:color-mix(in srgb,var(--color-surface,#000000) 80%,transparent);backdrop-filter:blur(24px);font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:500}.ds-logo{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--color-primary,#ffffff);font-size:14px;letter-spacing:-0.025em;text-decoration:none}.ds-logo-mark{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:4px;background:var(--color-surface-container-lowest,#050506);font-size:12px}.ds-nav-links{display:flex;gap:4px}.ds-nav-link{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:8px;color:var(--color-text-muted,#8b8b94);font-size:12px;text-decoration:none;transition:color .15s cubic-bezier(.2,.8,.2,1),background-color .15s cubic-bezier(.2,.8,.2,1)}.ds-nav-link:hover{background:var(--color-surface-container-low,#0d0d10);color:var(--color-on-surface,#e4e1e6)}.ds-nav-link:focus-visible,.ds-logo:focus-visible,.ds-nav-cta:focus-visible{outline:2px solid var(--color-outline,#8e9192);outline-offset:2px}.ds-nav-cta{display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:8px;background:var(--color-primary,#ffffff);color:var(--color-on-primary,#2f3131);font-size:12px;text-decoration:none;transition:opacity .15s}.ds-nav-cta:hover{opacity:.9}"
+    },
+    {
+      "name": "Status Pill",
+      "kind": "chip",
+      "refersTo": "status-pill",
+      "description": "Project status as a capsule: an 8px dot in the status hue, the word, then the year. The tooltip defines the word.",
+      "html": "<span class=\"ds-pill\" title=\"Deployed and reachable\"><span class=\"ds-pill-dot\"></span>Live<span class=\"ds-pill-year\">· 2026</span></span>",
+      "css": ".ds-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:9999px;background:var(--color-surface-container-lowest,#050506);color:var(--color-primary,#ffffff);font-family:var(--font-sans,Geist,ui-sans-serif,system-ui,sans-serif);font-size:14px;font-weight:500;line-height:1.4}.ds-pill-dot{width:8px;height:8px;border-radius:9999px;background:var(--color-live,#10b981)}.ds-pill-year{color:var(--color-on-surface-variant,#c4c7c8)}"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "chip-tech",
+      "description": "A technology in a project or skill group: Soot fill, hairline, 4px corners, optional 14px brand mark.",
+      "html": "<ul class=\"ds-chips\"><li class=\"ds-chip\">FastAPI</li><li class=\"ds-chip\">PostgreSQL</li><li class=\"ds-chip\">Next.js</li></ul>",
+      "css": ".ds-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}.ds-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:4px;background:var(--color-surface-container-low,#0d0d10);color:var(--color-on-surface,#e4e1e6);font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:12px;font-weight:500;line-height:1.333;transition:border-color .15s cubic-bezier(.2,.8,.2,1),background-color .15s cubic-bezier(.2,.8,.2,1)}.ds-chip:hover{border-color:var(--color-outline,#8e9192);background:var(--color-surface-container,#121216)}"
+    },
+    {
+      "name": "Surface Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Every container on the page: Bench Black, one hairline, 12px corners, no shadow. Hover brightens the edge on large cards.",
+      "html": "<article class=\"ds-card\"><p class=\"ds-card-meta\">Jan 2026 – Present · Pune</p><h3 class=\"ds-card-title\">Enovate</h3><p class=\"ds-card-body\">Backend and GenAI systems: FastAPI services, LLM pipelines and the deployments behind them.</p><span class=\"ds-tag\">Python</span></article>",
+      "css": ".ds-card{display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:12px;background:var(--color-surface-container-lowest,#050506);color:var(--color-on-surface,#e4e1e6);font-family:var(--font-sans,Geist,ui-sans-serif,system-ui,sans-serif);transition:border-color .2s cubic-bezier(.2,.8,.2,1)}.ds-card:hover{border-color:var(--color-outline-variant,#444748)}.ds-card-meta{margin:0;font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--color-text-muted,#8b8b94)}.ds-card-title{margin:0;font-size:20px;font-weight:600;line-height:1.4;color:var(--color-primary,#ffffff)}.ds-card-body{margin:0;font-size:16px;line-height:1.625;color:var(--color-on-surface-variant,#c4c7c8)}.ds-tag{align-self:flex-start;padding:4px 8px;border-radius:4px;background:var(--color-surface-container-high,#19191d);color:var(--color-on-surface-variant,#c4c7c8);font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:12px;font-weight:500}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Contact form field: uppercase mono label, Soot fill, hairline that brightens on focus, Error Rose when invalid.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-label\" for=\"ds-email\">Email</label><input class=\"ds-input\" id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\" autocomplete=\"email\"></div>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:8px;font-family:var(--font-sans,Geist,ui-sans-serif,system-ui,sans-serif)}.ds-label{font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--color-text-muted,#8b8b94)}.ds-input{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:8px;background:var(--color-surface-container-low,#0d0d10);color:var(--color-on-surface,#e4e1e6);caret-color:var(--color-primary,#ffffff);font:inherit;font-size:16px;transition:border-color .15s cubic-bezier(.2,.8,.2,1)}.ds-input::placeholder{color:var(--color-text-muted,#8b8b94)}.ds-input:focus{border-color:var(--color-outline,#8e9192)}.ds-input:focus-visible{outline:2px solid var(--color-outline,#8e9192);outline-offset:1px}.ds-input[aria-invalid=true]{border-color:var(--color-error,#ffb4ab)}.ds-input:disabled{opacity:.5}"
+    },
+    {
+      "name": "Phone Action Bar",
+      "kind": "nav",
+      "refersTo": "mobile-bar-item",
+      "description": "Below 768px the three things both audiences come to do sit under the thumb: Projects, Résumé, Contact.",
+      "html": "<nav class=\"ds-bar\" aria-label=\"Quick actions\"><a class=\"ds-bar-item\" href=\"#projects\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"7\" rx=\"1.5\"/><rect x=\"3\" y=\"14\" width=\"8\" height=\"6\" rx=\"1.5\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"6\" rx=\"1.5\"/></svg>Projects</a><a class=\"ds-bar-item\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8z\"/><path d=\"M14 3v5h5\"/><path d=\"M9 13h6\"/><path d=\"M9 17h6\"/></svg>Résumé</a><button class=\"ds-bar-item\" type=\"button\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m3 7 9 6 9-6\"/></svg>Contact</button></nav>",
+      "css": ".ds-bar{display:flex;align-items:stretch;gap:4px;width:100%;max-width:420px;padding:0 8px env(safe-area-inset-bottom);border-top:1px solid var(--color-border-subtle,#1d1d22);background:color-mix(in srgb,var(--color-surface,#000000) 85%,transparent);backdrop-filter:blur(24px)}.ds-bar-item{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:56px;border:0;border-radius:8px;background:transparent;color:var(--color-on-surface-variant,#c4c7c8);font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-size:12px;font-weight:500;text-decoration:none;cursor:pointer;transition:background-color .15s cubic-bezier(.2,.8,.2,1)}.ds-bar-item:active{background:var(--color-surface-container-low,#0d0d10)}.ds-bar-item:focus-visible{outline:2px solid var(--color-outline,#8e9192);outline-offset:-2px}"
+    },
+    {
+      "name": "Theme Toggle",
+      "kind": "custom",
+      "refersTo": "control-header",
+      "description": "The signature control: a 36px header shell whose glyph slides between a filled circle (dark) and a hollow one with a dot (light). On the page it also plays a keyboard click and runs the pixel wipe.",
+      "html": "<button class=\"ds-theme\" type=\"button\" aria-label=\"Switch to light mode\" title=\"Switch to light mode\"><span class=\"ds-theme-ring\"></span><span class=\"ds-theme-dot\"></span></button>",
+      "css": ".ds-theme{position:relative;display:grid;place-items:center;width:36px;height:36px;padding:0;border:1px solid var(--color-border-subtle,#1d1d22);border-radius:8px;background:var(--color-surface-container-lowest,#050506);color:var(--color-primary,#ffffff);cursor:pointer;transition:border-color .15s cubic-bezier(.2,.8,.2,1),transform .15s cubic-bezier(.2,.8,.2,1)}.ds-theme:hover{border-color:var(--color-outline,#8e9192)}.ds-theme:active{transform:scale(.95)}.ds-theme:focus-visible{outline:2px solid var(--color-outline,#8e9192);outline-offset:2px}.ds-theme-ring{position:absolute;width:16px;height:16px;border:1px solid currentColor;border-radius:9999px;background:currentColor;transition:transform .3s cubic-bezier(.2,.8,.2,1),background-color .3s cubic-bezier(.2,.8,.2,1)}.ds-theme-dot{position:absolute;width:4px;height:4px;border-radius:9999px;background:currentColor;opacity:0;transform:translateX(6px);transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s cubic-bezier(.2,.8,.2,1)}.ds-theme:hover .ds-theme-ring{transform:translateX(-6px);background:transparent}.ds-theme:hover .ds-theme-dot{opacity:1;transform:translateX(8px)}@media (pointer:coarse){.ds-theme{width:44px;height:44px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Dark Workbench",
+    "overview": "A black bench under one lamp. The page is a single centred column on a true-black canvas, and the only thing lit is the work: white headings, soft-white copy, screenshots and the contribution grid. Everything that is tooling rather than work (the clock, the lofi player, the menu, the theme switch, the cursor ring) sits at the edges in header-sized, hairline-bordered controls set in muted mono, present but dim. The mood is focused, confident, quiet. Nothing shouts; hierarchy comes from scale, weight and tonal contrast, never from colour or decoration.\n\nDensity is airy but disciplined. Major sections stand 96 px apart on a phone and 128 px apart on a desk, so each reads as its own island, while inside a section the rhythm tightens to a 4 px grid with 40 px between heading and content. Structure is drawn with 1 px hairlines and tonal steps a few points apart; surfaces never float. The one accent is the absence of accent: pure white is the primary colour, spent on the name, headings and the single call to action, and the four status hues appear only as dots.\n\nThe bench has a day setting. The light theme is a full peer, not an afterthought: every token has a light value, the canvas becomes pure white, and the hero banner cross-fades from night to day. Phones are a first-class reader, so the system is specified at 320 px upward, with 44 px targets wherever the pointer is a finger. The look preserves the identity of the earlier \"Technical Precision\" system; what changed is the values, the contrast and the layout discipline.",
+    "keyCharacteristics": [
+      "True-black canvas (#000000) with cards a hair above it; depth by tone and hairline, never by shadow at rest.",
+      "White as the only emphasis; colour reserved for 8 px status dots and the error state.",
+      "Geist for reading, JetBrains Mono (one weight) for every label, control and datum.",
+      "Hover brightens an edge; press scales to 95%; reveals rise 16 px once. One easing curve everywhere.",
+      "A dotted 284 × 112 px lattice behind the page that the theme wipe, the generative covers and the banner all echo.",
+      "Two themes with equal rigour, 44 px touch targets, reduced-motion respected throughout."
+    ],
+    "rules": [
+      { "name": "The One Lamp Rule", "body": "Pure white is emphasis, and emphasis is rare: the name, section headings, card titles, one primary button. Body text is Soft White, never white.", "section": "colors" },
+      { "name": "The Dot-Only Colour Rule", "body": "Live, Building and Archive hues appear as 8 px dots (and the 6 px availability pulse), never as fills, borders or text. Two exceptions: Error Rose inside the contact form, and Live Green on the sent-message check and one bar in seven of an escrow cover.", "section": "colors" },
+      { "name": "The Hairline Rule", "body": "Boundaries are 1 px of Hairline over a tonal step of at most two ramp positions. If a surface needs more separation than that, it is the wrong surface.", "section": "colors" },
+      { "name": "The Mono Means Metadata Rule", "body": "If the text is about the page (a label, a control, a date, a count, a shortcut), it is JetBrains Mono. If it is for reading, it is Geist. Never mix within one element.", "section": "typography" },
+      { "name": "The Single-Weight Mono Rule", "body": "Only JetBrains Mono 500 is shipped. Mono text never asks for bold or regular; emphasis in mono comes from colour (Pewter to Soft White to Lamp White), not weight.", "section": "typography" },
+      { "name": "The Tight Headline Rule", "body": "Every Geist heading at 24 px or larger carries −0.025em tracking. Body text keeps its natural tracking; captions widen.", "section": "typography" },
+      { "name": "The 44 px Rule", "body": "Any element a thumb can tap is at least 44 px on its shorter side on a coarse pointer, including text links in the hero and footer, which get the height through padding, not font size.", "section": "layout" },
+      { "name": "The Flat-at-Rest Rule", "body": "In-page surfaces never carry a drop shadow, in either theme. If something must float, it is a modal, and it gets the Overlay shadow and the scrim.", "section": "elevation" },
+      { "name": "The Brightening Edge Rule", "body": "Hover and focus change a colour, not a position: the border goes to Lit Edge, the text goes up one text step. Position changes are reserved for the press (scale 0.95) and the first-view reveal.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do build every container as Bench Black with a 1 px Hairline and a 12 px radius, and every control as an 8 px-radius surface that brightens its edge to Lit Edge on hover.",
+      "Do give any tappable element at least 44 px on a coarse pointer, using padding on text links so the type size stays 12 px.",
+      "Do use cubic-bezier(0.2, 0.8, 0.2, 1) for every transition and check prefers-reduced-motion before any animation, including springs and infinite loops.",
+      "Do keep Pewter for 11–12 px metadata only on True Black or Bench Black, where it holds 5.7:1 or better.",
+      "Do mark a link that leaves the site with the 14 px arrow glyph and open it in a new tab; keep in-page navigation as real anchors.",
+      "Do define both theme values for any new token, in the @theme block and the html[data-theme=\"light\"] override.",
+      "Do draw new icons on the 24-unit grid at a 2 px stroke in currentColor, and take brand marks from simple-icons.",
+      "Do keep JetBrains Mono at weight 500 and reserve it for labels, controls and data."
+    ],
+    "donts": [
+      "Don't add a drop shadow, gradient fill or glow to a surface in the page flow, in either theme; only the palette overlay and the cover glyph carry shadows.",
+      "Don't use Live Green, Building Amber or Archive Zinc as a fill, border or text colour; they are 8 px dots.",
+      "Don't put an eyebrow, index number or decorative label above a section heading; the heading carries its own weight.",
+      "Don't lay projects out as a grid of identical cards; featured work gets the 5/7 row and the rest the disclosure list.",
+      "Don't set interface text below 10 px, or anything a visitor must read below 11 px; only decorative lettering inside a cover may go smaller.",
+      "Don't type a unicode arrow, bullet or emoji where an icon belongs.",
+      "Don't fire single-key shortcuts outside the open palette, or focus a text field when the dialog opens on a touch screen.",
+      "Don't introduce a second accent hue or a brand colour; emphasis is Lamp White and rarity."
+    ]
+  }
+}
