@@ -10,10 +10,9 @@ const SECTIONS = [
   { id: "about", label: "About", key: "1" },
   { id: "experience", label: "Experience", key: "2" },
   { id: "projects", label: "Projects", key: "3" },
-  { id: "open-source", label: "Open Source", key: "4" },
+  { id: "open-source", label: "GitHub", key: "4" },
   { id: "skills", label: "Skills", key: "5" },
   { id: "education", label: "Education", key: "6" },
-  { id: "writing", label: "Writing", key: "7" },
 ];
 
 /** Global keyboard shortcuts — works even when the palette is closed */

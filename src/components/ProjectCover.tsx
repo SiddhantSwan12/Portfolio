@@ -2,15 +2,33 @@
 
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import type { PointerEvent } from "react";
-import type { ProjectCover as CoverKind } from "@/lib/content";
+import type { ProjectCover as CoverKind, ProjectCoverCopy } from "@/lib/content";
 
-const COVER_LABEL: Record<CoverKind, string> = {
-  orbits: "Athena.ai",
-  mesh: "FairWork",
-  waveform: "CommunityAI",
+type Variant = "assistant" | "community" | "escrow";
+
+const VARIANT: Record<CoverKind, Variant> = {
+  orbits: "assistant",
+  mesh: "escrow",
+  waveform: "community",
 };
 
-export function ProjectCover({ className = "h-52", kind }: { className?: string; kind: CoverKind }) {
+const DEFAULT_COPY: Record<CoverKind, ProjectCoverCopy> = {
+  orbits: { left: "Input", right: "Output", center: "AI", footer: ["Ingest", "Reason", "Answer"] },
+  mesh: { left: "Client", right: "Builder", center: "Escrow", footer: ["Contract", "Milestone", "Release"] },
+  waveform: { left: "Voice in", right: "Actions out", center: "AI", footer: ["Transcript", "Minutes", "Moderation"] },
+};
+
+export function ProjectCover({
+  className = "h-52",
+  kind,
+  label,
+  copy,
+}: {
+  className?: string;
+  kind: CoverKind;
+  label: string;
+  copy?: ProjectCoverCopy;
+}) {
   const reduce = useReducedMotion();
   const rawRotateX = useMotionValue(0);
   const rawRotateY = useMotionValue(0);
@@ -51,13 +69,11 @@ export function ProjectCover({ className = "h-52", kind }: { className?: string;
         className="absolute inset-0 opacity-85 transition-opacity duration-500 group-hover:opacity-100"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       >
-        {kind === "orbits" && <Athena />}
-        {kind === "mesh" && <FairWork />}
-        {kind === "waveform" && <CommunityAI />}
+        <SignalCover variant={VARIANT[kind]} copy={copy ?? DEFAULT_COPY[kind]} />
       </motion.div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/28 to-transparent p-4">
         <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-on-surface-variant">
-          {COVER_LABEL[kind]}
+          {label}
         </span>
         <span className="grid size-7 place-items-center rounded border border-border-subtle bg-surface-container-lowest/80 font-mono text-[10px] text-primary">
           3D
@@ -67,55 +83,7 @@ export function ProjectCover({ className = "h-52", kind }: { className?: string;
   );
 }
 
-function Athena() {
-  return (
-    <SignalCover
-      leftLabel="Voice in"
-      rightLabel="Domain out"
-      center="AI"
-      footer={["Finance", "Health", "Education"]}
-      variant="assistant"
-    />
-  );
-}
-
-function FairWork() {
-  return (
-    <SignalCover
-      leftLabel="Client"
-      rightLabel="Builder"
-      center="Escrow"
-      footer={["Contract", "Milestone", "Release"]}
-      variant="escrow"
-    />
-  );
-}
-
-function CommunityAI() {
-  return (
-    <SignalCover
-      leftLabel="Voice in"
-      rightLabel="Actions out"
-      center="AI"
-      footer={["Transcript", "Minutes", "Moderation"]}
-      variant="community"
-    />
-  );
-}
-
-function SignalCover({
-  center,
-  footer,
-  leftLabel,
-  rightLabel,
-  variant,
-}: {
-  center: string;
-  footer: string[];
-  leftLabel: string;
-  rightLabel: string;
-  variant: "assistant" | "community" | "escrow";
-}) {
+function SignalCover({ copy, variant }: { copy: ProjectCoverCopy; variant: Variant }) {
   const reduce = useReducedMotion();
   const bars = Array.from({ length: variant === "escrow" ? 28 : 34 });
   const speed = variant === "escrow" ? 2.6 : 2.2;
@@ -128,13 +96,13 @@ function SignalCover({
         </svg>
       </div>
       <div className="absolute left-6 top-6 rounded border border-border-subtle bg-surface-container-lowest px-2 py-1 font-mono text-[9px] uppercase text-text-muted">
-        {leftLabel}
+        {copy.left}
       </div>
       <div className="absolute right-6 bottom-6 rounded border border-border-subtle bg-surface-container-lowest px-2 py-1 font-mono text-[9px] uppercase text-text-muted">
-        {rightLabel}
+        {copy.right}
       </div>
       <div className="absolute left-6 bottom-7 hidden gap-1.5 sm:flex">
-        {footer.map((item, index) => (
+        {copy.footer.map((item, index) => (
           <motion.span
             key={item}
             className="rounded border border-border-subtle bg-surface-container-lowest/80 px-2 py-1 font-mono text-[8px] uppercase tracking-wider text-text-muted"
@@ -172,7 +140,7 @@ function SignalCover({
         animate={reduce ? undefined : { scale: [1, 1.04, 1], y: [0, -2, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
-        {center}
+        {copy.center}
       </motion.div>
     </div>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import { education, profile, siteUrl, socials } from "@/lib/content";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,11 +15,15 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["500"],
 });
 
+const TITLE = `${profile.name} — Software Engineer`;
+const DESCRIPTION =
+  "Software engineer building backend and GenAI systems with Python, FastAPI, LLMs and Next.js. B.Tech ECE, VIT Pune 2026. Open to SWE and AI/ML roles.";
+
 export const metadata: Metadata = {
-  title: "Siddhant Swan — Software Engineer",
-  description:
-    "Software Engineer · Backend & GenAI. Python · FastAPI · LLMs · Solidity. Building real-world AI systems. Final-year @ VIT Pune.",
-  metadataBase: new URL("https://siddhantswan.dev"),
+  title: TITLE,
+  description: DESCRIPTION,
+  metadataBase: new URL(siteUrl),
+  alternates: { canonical: "/" },
   icons: {
     icon: [
       { url: "/favicon.png", sizes: "96x96", type: "image/png" },
@@ -27,11 +32,24 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Siddhant Swan — Software Engineer",
-    description:
-      "Backend & GenAI engineer building real-world AI systems with Python, FastAPI, LLMs and Solidity.",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/",
+    siteName: profile.name,
     type: "website",
+    locale: "en_IN",
   },
+};
+
+// Structured data so search engines connect the site, GitHub and LinkedIn to one person.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  url: siteUrl,
+  jobTitle: "Software Engineer",
+  alumniOf: { "@type": "CollegeOrUniversity", name: education.school },
+  sameAs: socials.map((s) => s.href),
 };
 
 export default function RootLayout({
@@ -47,6 +65,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-on-background transition-colors duration-300">
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+        />
         <Script
           id="theme-init"
           strategy="beforeInteractive"

@@ -2,6 +2,10 @@
 **Pairs with:** [DESIGN.md](DESIGN.md) · Merged from resume + LinkedIn export.
 **Convention:** Items marked **⚠ CONFIRM** are inferred or conflicting — verify before/at implementation.
 
+> **Superseded (Nov 2026):** this file is the original build brief. The live copy — bio, roles, projects,
+> links and certifications — now lives in `src/lib/content.ts`, which is the single source of truth.
+> Where the two differ, `content.ts` is correct.
+
 ---
 
 ## Meta / SEO

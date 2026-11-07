@@ -1,18 +1,19 @@
-// Single source of truth for portfolio content. See CONTENT.md.
+// Single source of truth for portfolio content. CONTENT.md is the original brief;
+// where they differ, this file wins.
+
+export const siteUrl = "https://siddhantswan.vercel.app";
 
 export const profile = {
   name: "Siddhant Swan",
   handle: "SiddhantSwan",
   headline: "Software Engineer · Backend & GenAI",
-  subheadline:
-    "Python · FastAPI · LLMs · Solidity — building real-world AI systems. Final-year @ VIT Pune.",
+  subheadline: "Python · FastAPI · LLMs · Next.js — building real-world AI systems.",
+  availability: "Open to SWE / AI roles",
   tagline:
-    "Siddhant Swan is an AI/ML and software development enthusiast currently completing his B.Tech in Electronics & Telecommunication at VIT Pune with a GPA of 8.31.",
+    "I build backend and GenAI systems end to end: RAG pipelines, LLM products, and the APIs and interfaces that ship them. B.Tech in Electronics & Telecommunication from VIT Pune, class of 2026.",
   intro: [
-    "His work focuses on building practical, real-world systems across AI/ML, backend development, APIs, and modern web technologies. He enjoys solving problems where clean logic, scalable architecture, and product thinking come together.",
-    "Before graduating, Siddhant gained experience across multiple domains, including backend development at Enovate IT, threat intelligence as a SOC analyst at Geeks Solutions, and cross-border business development strategy with Grant Thornton China across APAC markets.",
-    "He actively builds projects, practices competitive programming, and continues improving his skills in Python, FastAPI, machine learning, LLM-based applications, JavaScript, React, and Next.js.",
-    "Siddhant is actively looking for full-time Software Engineer, AI/ML Engineer, or Full-Stack Developer roles starting mid-2026.",
+    "Most recently I built production API features at Enovate IT and triaged SIEM alerts as a SOC analyst intern at Geeks Solutions. Since then I've shipped a multi-agent trading terminal, a drone traffic-analysis pipeline, an offline dictation app for Windows and an application-security lab.",
+    "I'm looking for full-time Software Engineer, AI/ML Engineer or Full-Stack roles.",
   ],
   email: "swansiddhant9@gmail.com",
   resumeUrl: "/resume.pdf",
@@ -23,7 +24,7 @@ export type SocialLink = { label: string; href: string };
 export const socials: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/SiddhantSwan12" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/siddhantswan/" },
-  { label: "Twitter", href: "https://twitter.com/SiddhantSwan" },
+  { label: "X", href: "https://x.com/Siddhant_Swan" },
   { label: "Instagram", href: "https://www.instagram.com/siddhant.swan/" },
 ];
 
@@ -45,27 +46,27 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     org: "Enovate IT Outsourcing Pvt. Ltd.",
-    role: "Software Engineer",
+    role: "Python Developer Intern",
     period: "Jan 2026 — Mar 2026",
     location: "Pune",
-    active: true,
     logo: { initials: "E", wordmark: "Enovate", src: "/logos/enovate.png" },
     bullets: [
-      "Built backend API features with Python and FastAPI across a production codebase under senior-engineer guidance.",
-      "Debugged and refactored API endpoints, getting hands-on with how production backends are structured and maintained.",
-      "Delivered tasks across agile sprints with daily standups over the 3-month contract.",
+      "Built and extended 5+ backend features in a production codebase with Python, FastAPI and Django REST Framework, under senior-engineer guidance.",
+      "Debugged and refactored 3 DRF API endpoints, cutting average response time by ~20% and improving readability for long-term maintenance.",
+      "Delivered across 2 agile sprints with daily standups, shipping assigned tasks on schedule through the 3-month contract.",
     ],
-    tags: ["Python", "FastAPI", "REST"],
+    tags: ["Python", "FastAPI", "DRF", "REST"],
   },
   {
     org: "Geeks Solutions",
-    role: "SOC Intern",
+    role: "SOC Analyst Intern",
     period: "Jul 2025 — Dec 2025",
+    location: "Nashik",
     logo: { initials: "GS", wordmark: "Geeks", src: "/logos/geeks-solutions.png" },
     bullets: [
-      "Monitored and triaged SIEM-flagged security alerts daily as part of the SOC team.",
-      "Wrote Python scripts to automate parts of log review, speeding up routine checks.",
-      "Earned the Cyber Threat Intelligence 101 cert (arcX) and applied it directly in analyst work.",
+      "Monitored and triaged SIEM-flagged security alerts daily, averaging 80+ alerts a week across multiple threat categories.",
+      "Wrote Python scripts to automate parts of the log-review process, reducing time spent on manual checks by ~35%.",
+      "Applied Cyber Threat Intelligence (arcX CTI 101) in daily analyst work, reviewing 500+ log entries over the internship.",
     ],
     tags: ["Python", "SOC", "SIEM", "Threat Intel"],
   },
@@ -93,8 +94,9 @@ export const experiences: Experience[] = [
   },
 ];
 
-export type ProjectStatus = "Live" | "Building" | "Not Started";
+export type ProjectStatus = "Live" | "Shipped" | "Building" | "Archived";
 export type ProjectCover = "orbits" | "mesh" | "waveform";
+export type ProjectCoverCopy = { left: string; right: string; center: string; footer: string[] };
 export type Project = {
   name: string;
   status: ProjectStatus;
@@ -102,11 +104,66 @@ export type Project = {
   description: string;
   tech: string[];
   cover: ProjectCover;
+  coverCopy?: ProjectCoverCopy;
   image?: string;
   href?: string;
+  hrefLabel?: string;
+  repo?: string;
+  note?: string;
 };
 
 export const projects: Project[] = [
+  {
+    name: "Traffic Intelligence",
+    status: "Live",
+    year: "2026",
+    description:
+      "Drone-footage traffic analysis built for the FlytBase Visual Hackathon. VisDrone-trained YOLO detections are tracked into persistent IDs through occlusion and crossing paths, parked vehicles are suppressed, and seven transport modes are resolved (LGV vs HGV by measured length). Ships annotated video, per-frame CSV and a report, surfaced in a web dashboard.",
+    tech: ["Python", "PyTorch", "Ultralytics YOLO", "OpenCV", "pandas", "FFmpeg"],
+    cover: "orbits",
+    coverCopy: { left: "Drone feed", right: "Tracks out", center: "YOLO", footer: ["Detect", "Track", "Report"] },
+    image: "/projects/traffic-intelligence.jpg",
+    href: "https://traffic-analysis-agent.vercel.app",
+    repo: "https://github.com/SiddhantSwan12/Traffic_Analysis_Agent",
+  },
+  {
+    name: "Quorum",
+    status: "Live",
+    year: "2026",
+    description:
+      "Trading terminal for US and Indian listings with the TradingAgents multi-agent pipeline wired into every symbol page. React + Vite front end over a FastAPI bridge for Yahoo Finance bars and streamed agent runs; discovers annual reports via SEC EDGAR and Screener, cites uploaded PDFs in agent runs, persists alerts to SQLite, and includes ratio analysis and a backtest lab.",
+    tech: ["React", "Vite", "Tailwind CSS", "FastAPI", "Python", "SQLite", "TradingAgents"],
+    cover: "mesh",
+    coverCopy: { left: "Market data", right: "Agent verdict", center: "Quorum", footer: ["Analysts", "Debate", "Risk"] },
+    image: "/projects/quorum-terminal.jpg",
+    href: "https://quorum-terminal.vercel.app",
+    repo: "https://github.com/SiddhantSwan12/quorum-trading-terminal",
+    note: "The hosted front end runs on a simulated feed; real quotes and agent runs need the FastAPI server.",
+  },
+  {
+    name: "OpenDictate",
+    status: "Shipped",
+    year: "2026",
+    description:
+      "Free, offline voice dictation for Windows: hold a shortcut, speak, release, and the text lands in whatever app has focus. A Tauri/Rust port of the open-source BetterWispr running Parakeet or Whisper on-device, with filler-word cleanup, voice commands, custom vocabulary, correction learning and local meeting notes through Ollama. Ships as a Windows installer.",
+    tech: ["Rust", "Tauri", "React", "TypeScript", "Whisper", "Ollama"],
+    cover: "waveform",
+    coverCopy: { left: "Mic in", right: "Text out", center: "ASR", footer: ["Parakeet", "Whisper", "Cleanup"] },
+    href: "https://github.com/SiddhantSwan12/openDictate/releases/latest",
+    hrefLabel: "Download",
+    repo: "https://github.com/SiddhantSwan12/openDictate",
+  },
+  {
+    name: "SecureWallet",
+    status: "Shipped",
+    year: "2026",
+    description:
+      "A local digital-wallet app built to practise application security. Transfers hold money invariants (no negative balances, atomic moves, idempotent retries), and an opt-in lab plants eight vulnerabilities, plus three found in self-review, each reproduced, remediated and regression-tested. Includes an ASVS 4.0.3 self-assessment, a STRIDE threat model and CI running Semgrep, gitleaks, Trivy, CodeQL and a ZAP baseline.",
+    tech: ["TypeScript", "Node.js", "PostgreSQL", "Docker", "Playwright", "Semgrep", "OWASP ZAP", "GitHub Actions"],
+    cover: "orbits",
+    coverCopy: { left: "Request", right: "Ledger", center: "Invariant", footer: ["Reproduce", "Remediate", "Verify"] },
+    repo: "https://github.com/SiddhantSwan12/AppSec",
+  },
   {
     name: "Athena.ai",
     status: "Live",
@@ -117,6 +174,7 @@ export const projects: Project[] = [
     cover: "orbits",
     image: "/projects/athena-ai.png",
     href: "https://atheenaai.vercel.app",
+    repo: "https://github.com/SiddhantSwan12/Athena_AI",
   },
   {
     name: "FairWork",
@@ -128,15 +186,32 @@ export const projects: Project[] = [
     cover: "mesh",
     image: "/projects/fairwork.png",
     href: "https://fair-work-escrow.onrender.com",
+    repo: "https://github.com/SiddhantSwan12/AI_Boomi_fair_work",
+    note: "Hosted on Render's free tier: the first load can take around 30 seconds while the server wakes.",
+  },
+  {
+    name: "Quant Analytics Dashboard",
+    status: "Live",
+    year: "2025",
+    description:
+      "Real-time pairs-trading analytics: Binance Futures tick data streamed over WebSockets, persisted to SQLite and resampled into multi-timeframe OHLCV, with OLS hedge ratio, z-score, rolling correlation and ADF stationarity tests, threshold alerts and a Groq-powered market Q&A assistant.",
+    tech: ["Python", "Streamlit", "pandas", "SQLite", "Plotly", "Binance", "Statsmodels", "Groq"],
+    cover: "mesh",
+    coverCopy: { left: "Tick feed", right: "Signals", center: "Z-score", footer: ["OHLCV", "Spread", "ADF"] },
+    href: "https://siddhantswan.streamlit.app",
+    repo: "https://github.com/SiddhantSwan12/quant_analytics_application",
+    note: "Hosted on Streamlit Community Cloud: it sleeps after inactivity and takes a moment to wake.",
   },
   {
     name: "CommunityAI",
-    status: "Live",
+    status: "Archived",
     year: "2024",
     description:
       "AI platform for meeting transcription and content moderation. A clean-OOP Python/FastAPI backend auto-extracts minutes and action items at ~90% accuracy; a React dashboard and Discord bot cut manual moderation workload by 70%.",
     tech: ["React", "Python", "FastAPI", "OpenAI Whisper", "Streamlit", "Discord API"],
     cover: "waveform",
+    coverCopy: { left: "Voice in", right: "Actions out", center: "AI", footer: ["Transcript", "Minutes", "Moderation"] },
+    repo: "https://github.com/SanvedN/communityAI",
   },
 ];
 
@@ -178,13 +253,14 @@ export const education = {
 };
 
 export const certifications: { title: string; issuer: string; year?: string }[] = [
+  { title: "McKinsey Forward Program", issuer: "McKinsey & Company", year: "2026" },
+  { title: "Data Visualization", issuer: "LinkedIn Learning", year: "2026" },
+  { title: "Python for Data Professionals in Finance", issuer: "LinkedIn Learning", year: "2026" },
   { title: "Cyber Threat Intelligence 101", issuer: "arcX", year: "2025" },
   { title: "IBM DevOps & Software Engineering", issuer: "Coursera", year: "2025" },
-  { title: "Advanced Quantum Computing — QxQ", issuer: "Qubit by Qubit · Google", year: "2024" },
   { title: "Deep Learning Certification", issuer: "NVIDIA", year: "2024" },
-  { title: "Data Visualization & Storytelling", issuer: "Certification" },
-  { title: "Python for Data Professionals in Finance", issuer: "Certification" },
-  { title: "Technoxian World Robotics — Silver Medal", issuer: "Line-Following Robot", year: "2023" },
+  { title: "Advanced Quantum Computing — QxQ", issuer: "Qubit by Qubit · Google", year: "2024" },
+  { title: "Technoxian World Robotics — Silver Medal", issuer: "Award · Line-following robot", year: "2023" },
 ];
 
 // Placeholder section (full-clone scope) — awaiting real data.

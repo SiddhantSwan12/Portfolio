@@ -9,9 +9,8 @@ import { NavPlayButton } from "./AudioPlayer";
 const LINKS = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "open-source", label: "Open Source" },
+  { id: "open-source", label: "GitHub" },
   { id: "skills", label: "Skills" },
-  { id: "writing", label: "Writing" },
 ];
 
 export function Nav() {

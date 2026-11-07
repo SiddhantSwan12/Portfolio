@@ -34,6 +34,18 @@ import {
   siDiscord,
   siGooglegemini,
   siPolygon,
+  siRust,
+  siTauri,
+  siVite,
+  siSqlite,
+  siUltralytics,
+  siPandas,
+  siFfmpeg,
+  siOllama,
+  siPlotly,
+  siBinance,
+  siOwasp,
+  siGithubactions,
   type SimpleIcon,
 } from "simple-icons";
 
@@ -76,6 +88,18 @@ const ICONS: Record<string, SimpleIcon> = {
   "Discord API": siDiscord,
   Gemini: siGooglegemini,
   Polygon: siPolygon,
+  Rust: siRust,
+  Tauri: siTauri,
+  Vite: siVite,
+  SQLite: siSqlite,
+  "Ultralytics YOLO": siUltralytics,
+  pandas: siPandas,
+  FFmpeg: siFfmpeg,
+  Ollama: siOllama,
+  Plotly: siPlotly,
+  Binance: siBinance,
+  "OWASP ZAP": siOwasp,
+  "GitHub Actions": siGithubactions,
 };
 
 export function SkillIcon({ name, className }: { name: string; className?: string }) {

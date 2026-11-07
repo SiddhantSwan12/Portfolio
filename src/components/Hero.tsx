@@ -29,7 +29,7 @@ export function Hero() {
             <div className="flex flex-wrap items-start justify-between gap-3">
               <span className="inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-border-subtle bg-surface-container-lowest/70 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-on-surface-variant backdrop-blur">
                 <span className="size-1.5 animate-pulse rounded-full bg-live" />
-                Open to SWE / AI roles · mid-2026
+                {profile.availability}
               </span>
               <CurrentTime className="text-2xl font-semibold leading-none tracking-[0.28em] text-white drop-shadow-[0_1px_10px_rgba(13,30,55,0.8)] md:text-4xl" />
             </div>

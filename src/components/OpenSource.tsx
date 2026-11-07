@@ -14,18 +14,12 @@ const LEVEL_BG = [
 export async function OpenSource() {
   const stats = await getGitHubStats();
 
-  const tiles = [
-    { label: "PRs merged", value: stats.mergedPRs },
-    { label: "Public repos", value: stats.repos },
-    { label: "Stars earned", value: stats.stars },
-  ];
-
   return (
     <section id="open-source" className="mx-auto flex w-full max-w-container min-w-0 flex-col gap-10 px-4 md:px-16">
       <SectionHeading
         index="03"
         eyebrow="In the open"
-        title="Open Source"
+        title="GitHub Activity"
         action={
           <a
             href="https://github.com/SiddhantSwan12"
@@ -38,25 +32,12 @@ export async function OpenSource() {
         }
       />
 
-      <Reveal className="grid min-w-0 grid-cols-1 gap-px overflow-hidden rounded-xl border border-border-subtle bg-border-subtle sm:grid-cols-3">
-        {tiles.map((s) => (
-          <div key={s.label} className="flex flex-col gap-1 bg-surface-container-lowest p-5 md:p-6">
-            <span className="text-3xl font-semibold tabular-nums text-primary md:text-4xl">
-              {s.value}
-            </span>
-            <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
-              {s.label}
-            </span>
-          </div>
-        ))}
-      </Reveal>
-
       {/* Contribution calendar — live from GitHub, falls back to a quiet grid */}
       <Reveal className="min-w-0 rounded-xl border border-border-subtle bg-surface-container-lowest p-5 md:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <span className="font-mono text-xs uppercase tracking-wider text-text-muted">
             {stats.ok
-              ? `${stats.totalContributions} contributions in the last year`
+              ? `${stats.totalContributions} contributions in the last year · ${stats.repos} public repos`
               : "Contribution graph"}
           </span>
           <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px] text-text-muted">

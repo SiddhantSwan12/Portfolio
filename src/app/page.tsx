@@ -5,7 +5,6 @@ import { Projects } from "@/components/Projects";
 import { OpenSource } from "@/components/OpenSource";
 import { Skills } from "@/components/Skills";
 import { Education } from "@/components/Education";
-import { Writing } from "@/components/Writing";
 import { Footer } from "@/components/Footer";
 import { InteractiveLayer } from "@/components/InteractiveLayer";
 
@@ -21,7 +20,6 @@ export default function Home() {
         <OpenSource />
         <Skills />
         <Education />
-        <Writing />
       </main>
       <Footer />
     </>
